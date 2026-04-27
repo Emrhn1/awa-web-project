@@ -1,0 +1,12 @@
+database/awa.sqlite
+database/*.sqlite-journal
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+*.log
+
+*.tmp
+*.bak
