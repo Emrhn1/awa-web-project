@@ -1,0 +1,38 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 2rem;
+    background: #f7f7f8;
+    color: #222;
+    line-height: 1.5;
+}
+
+header h1 {
+    margin: 0 0 0.25rem;
+}
+
+main {
+    margin-top: 2rem;
+    max-width: 720px;
+}
+
+section {
+    background: #fff;
+    border: 1px solid #e3e3e6;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+}
+
+ul {
+    padding-left: 1.25rem;
+}
+
+code {
+    background: #f0f0f2;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+}
