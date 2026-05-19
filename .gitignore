@@ -1,0 +1,15 @@
+backend/database/*.sqlite
+backend/database/*.sqlite-journal
+
+# Env / secrets
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# PHP
+*.log
