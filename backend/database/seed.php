@@ -6,6 +6,7 @@ return [
         [2023, 29, '2023-02-26'],
         [2024, 30, '2024-02-24'],
         [2025, 31, '2025-02-23'],
+        [2026, 32, '2026-03-01'],
     ],
 
     'categories' => [
@@ -139,5 +140,30 @@ return [
         [2025, 'Best Supporting Actress', 'Jamie Lee Curtis', 'The Last Showgirl', 2024, 0],
         [2025, 'Best Supporting Actress', 'Danielle Deadwyler', 'The Piano Lesson', 2024, 0],
         [2025, 'Best Supporting Actress', 'Ariana Grande', 'Wicked', 2024, 0],
+
+
+        [2026, 'Best Actor', 'Michael B. Jordan', 'Sinners', 2025, 1],
+        [2026, 'Best Actor', 'Timothee Chalamet', 'Marty Supreme', 2025, 0],
+        [2026, 'Best Actor', 'Leonardo DiCaprio', 'One Battle After Another', 2025, 0],
+        [2026, 'Best Actor', 'Ethan Hawke', 'Blue Moon', 2025, 0],
+        [2026, 'Best Actor', 'Jesse Plemons', 'Bugonia', 2025, 0],
+
+        [2026, 'Best Actress', 'Jessie Buckley', 'Hamnet', 2025, 1],
+        [2026, 'Best Actress', 'Rose Byrne', "If I Had Legs I'd Kick You", 2025, 0],
+        [2026, 'Best Actress', 'Kate Hudson', 'Song Sung Blue', 2025, 0],
+        [2026, 'Best Actress', 'Chase Infiniti', 'One Battle After Another', 2025, 0],
+        [2026, 'Best Actress', 'Emma Stone', 'Bugonia', 2025, 0],
+
+        [2026, 'Best Supporting Actor', 'Sean Penn', 'One Battle After Another', 2025, 1],
+        [2026, 'Best Supporting Actor', 'Miles Caton', 'Sinners', 2025, 0],
+        [2026, 'Best Supporting Actor', 'Benicio Del Toro', 'One Battle After Another', 2025, 0],
+        [2026, 'Best Supporting Actor', 'Jacob Elordi', 'Frankenstein', 2025, 0],
+        [2026, 'Best Supporting Actor', 'Paul Mescal', 'Hamnet', 2025, 0],
+
+        [2026, 'Best Supporting Actress', 'Amy Madigan', 'Weapons', 2025, 1],
+        [2026, 'Best Supporting Actress', "Odessa A'zion", 'Marty Supreme', 2025, 0],
+        [2026, 'Best Supporting Actress', 'Ariana Grande', 'Wicked: For Good', 2025, 0],
+        [2026, 'Best Supporting Actress', 'Wunmi Mosaku', 'Sinners', 2025, 0],
+        [2026, 'Best Supporting Actress', 'Teyana Taylor', 'One Battle After Another', 2025, 0],
     ],
 ];
