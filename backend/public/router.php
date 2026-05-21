@@ -7,16 +7,16 @@ if (php_sapi_name() === 'cli-server') {
     }
 }
 
-require __DIR__ . '/../src/db.php';
-require __DIR__ . '/../src/env.php';
-require __DIR__ . '/../src/response.php';
-require __DIR__ . '/../src/validate.php';
-require __DIR__ . '/../src/controllers/nominations.php';
-require __DIR__ . '/../src/controllers/actors.php';
-require __DIR__ . '/../src/controllers/films.php';
-require __DIR__ . '/../src/controllers/editions.php';
-require __DIR__ . '/../src/controllers/categories.php';
-require __DIR__ . '/../src/controllers/tmdb.php';
+require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../src/env.php';
+require_once __DIR__ . '/../src/response.php';
+require_once __DIR__ . '/../src/validate.php';
+require_once __DIR__ . '/../src/controllers/nominations.php';
+require_once __DIR__ . '/../src/controllers/actors.php';
+require_once __DIR__ . '/../src/controllers/films.php';
+require_once __DIR__ . '/../src/controllers/editions.php';
+require_once __DIR__ . '/../src/controllers/categories.php';
+require_once __DIR__ . '/../src/controllers/tmdb.php';
 
 set_exception_handler(function (Throwable $e) {
     server_error($e->getMessage());

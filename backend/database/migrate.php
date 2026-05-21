@@ -8,7 +8,7 @@
 
 require __DIR__ . '/../src/db.php';
 
-$dbPath = __DIR__ . '/awa.sqlite';
+$dbPath = db_path();
 if (file_exists($dbPath)) {
     unlink($dbPath);
     echo "Removed existing $dbPath\n";

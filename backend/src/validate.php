@@ -17,7 +17,8 @@ function v_bool01($value): ?int {
 function v_str($value, int $maxLen = 255): ?string {
     if (!is_string($value)) return null;
     $value = trim($value);
-    if ($value === '' || mb_strlen($value) > $maxLen) return null;
+    $length = function_exists('mb_strlen') ? mb_strlen($value) : strlen($value);
+    if ($value === '' || $length > $maxLen) return null;
     return $value;
 }
 

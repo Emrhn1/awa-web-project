@@ -12,22 +12,44 @@ function _tmdb_call(string $path): void {
          . (str_contains($path, '?') ? '&' : '?')
          . 'api_key=' . urlencode($key);
 
-    $ch = curl_init($url);
-    curl_setopt_array($ch, [
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT        => 8,
-        CURLOPT_HTTPHEADER     => ['Accept: application/json'],
-        CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_SSL_VERIFYHOST => false,
-    ]);
-    $body = curl_exec($ch);
-    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $err  = curl_error($ch);
-    curl_close($ch);
+    if (function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT        => 8,
+            CURLOPT_HTTPHEADER     => ['Accept: application/json'],
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+        ]);
+        $body = curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $err  = curl_error($ch);
+        curl_close($ch);
 
-    if ($body === false) {
-        server_error('TMDb request failed: ' . $err);
-        return;
+        if ($body === false) {
+            server_error('TMDb request failed: ' . $err);
+            return;
+        }
+    } else {
+        $context = stream_context_create([
+            'http' => [
+                'method'  => 'GET',
+                'header'  => "Accept: application/json\r\n",
+                'timeout' => 8,
+            ],
+        ]);
+        $body = @file_get_contents($url, false, $context);
+        $code = 200;
+        $headers = function_exists('http_get_last_response_headers')
+            ? http_get_last_response_headers()
+            : ($http_response_header ?? []);
+        if (isset($headers[0]) && preg_match('#\s(\d{3})\s#', $headers[0], $m)) {
+            $code = (int)$m[1];
+        }
+        if ($body === false) {
+            server_error('TMDb request failed');
+            return;
+        }
     }
 
     // TMDb returns gzip-compressed responses; decompress if needed.
