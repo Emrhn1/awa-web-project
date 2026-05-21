@@ -3,20 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AwA &mdash; Actor Awards Visualizer</title>
+    <title>AwA - Actor Awards Visualizer</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <header>
-        <h1>AwA &mdash; Actor Awards Visualizer</h1>
-        <p>SAG Awards data (Phase 1 &mdash; just API is ready).</p>
+    <header class="app-header">
+        <div>
+            <p class="eyebrow">Screen Actors Guild Awards</p>
+            <h1>AwA - Actor Awards Visualizer</h1>
+        </div>
+        <div class="api-state" aria-live="polite">
+            <span class="state-dot" id="api-dot"></span>
+            <span id="api-status">Connecting to API</span>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2>API Status</h2>
-            <p id="status">Loading&hellip;</p>
-            <ul id="endpoints"></ul>
+    <main class="dashboard">
+        <section class="toolbar" aria-label="Dashboard filters">
+            <label>
+                Year
+                <select id="year-filter">
+                    <option value="">All years</option>
+                </select>
+            </label>
+            <label>
+                Category
+                <select id="category-filter">
+                    <option value="">All categories</option>
+                </select>
+            </label>
+            <label>
+                Result
+                <select id="winner-filter">
+                    <option value="">All results</option>
+                    <option value="1">Winners</option>
+                    <option value="0">Nominees</option>
+                </select>
+            </label>
+            <label class="search-field">
+                Search
+                <input id="search-filter" type="search" placeholder="Actor or film">
+            </label>
+            <button id="reset-filters" type="button">Reset</button>
+        </section>
+
+        <section class="metrics" aria-label="Summary metrics">
+            <article>
+                <span>Total nominations</span>
+                <strong id="metric-nominations">0</strong>
+            </article>
+            <article>
+                <span>Winning entries</span>
+                <strong id="metric-winners">0</strong>
+            </article>
+            <article>
+                <span>Actors shown</span>
+                <strong id="metric-actors">0</strong>
+            </article>
+            <article>
+                <span>Films shown</span>
+                <strong id="metric-films">0</strong>
+            </article>
+        </section>
+
+        <section class="chart-grid" aria-label="Award visualizations">
+            <article class="chart-panel">
+                <div class="panel-heading">
+                    <h2>Nominations by Year</h2>
+                    <span>Bar chart</span>
+                </div>
+                <div id="year-chart" class="chart" role="img" aria-label="Bar chart of nominations by year"></div>
+            </article>
+            <article class="chart-panel">
+                <div class="panel-heading">
+                    <h2>Category Trends</h2>
+                    <span>Line chart</span>
+                </div>
+                <div id="category-chart" class="chart" role="img" aria-label="Line chart of category trends"></div>
+            </article>
+            <article class="chart-panel">
+                <div class="panel-heading">
+                    <h2>Winner Ratio</h2>
+                    <span>Pie chart</span>
+                </div>
+                <div id="winner-chart" class="chart chart-small" role="img" aria-label="Pie chart of winners and nominees"></div>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="table-panel">
+                <div class="panel-heading">
+                    <h2>Nominations</h2>
+                    <div class="export-actions" aria-label="Export filtered data">
+                        <button id="export-csv" type="button">CSV</button>
+                        <button id="export-json" type="button">JSON</button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Category</th>
+                                <th>Actor</th>
+                                <th>Film</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="nominations-body"></tbody>
+                    </table>
+                </div>
+            </article>
+
+            <aside class="detail-panel" aria-live="polite">
+                <div class="panel-heading">
+                    <h2>Actor Detail</h2>
+                    <span id="detail-state">Select an actor</span>
+                </div>
+                <div id="actor-detail" class="actor-detail empty-state">
+                    <p>Choose an actor from the nominations table to inspect their SAG history and available TMDb context.</p>
+                </div>
+            </aside>
         </section>
     </main>
 
