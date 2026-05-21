@@ -286,9 +286,9 @@ function renderWinnerChart() {
     const winnerAngle = total ? (winners / total) * 360 : 0;
     const width = 300;
     const height = 250;
-    const cx = 120;
+    const cx = 92;
     const cy = 105;
-    const radius = 82;
+    const radius = 72;
 
     const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, role: 'presentation' });
     svg.appendChild(svgEl('path', {
@@ -310,12 +310,12 @@ function renderWinnerChart() {
 
     const legend = [
         ['Winners', winners, '#c99a3f'],
-        ['Other nominees', nominees, '#366c9f'],
+        ['Nominees', nominees, '#366c9f'],
     ];
     legend.forEach(([label, count, color], index) => {
-        const y = 70 + index * 34;
-        svg.appendChild(svgEl('rect', { x: 220, y: y - 11, width: 12, height: 12, fill: color }));
-        const text = svgEl('text', { x: 238, y, 'text-anchor': 'start' });
+        const y = 82 + index * 34;
+        svg.appendChild(svgEl('rect', { x: 178, y: y - 11, width: 12, height: 12, fill: color }));
+        const text = svgEl('text', { x: 198, y, 'text-anchor': 'start' });
         text.textContent = `${label}: ${count}`;
         svg.appendChild(text);
     });
