@@ -1,5 +1,6 @@
 const API_BASE = 'http://localhost:8000/api';
 const TMDB_IMAGE_BASE = 'https://image.tmdb.org/t/p/w185';
+const TMDB_POSTER_BASE = 'https://image.tmdb.org/t/p/w342';
 const chartColors = ['#b33f31', '#366c9f', '#2f7d62', '#c99a3f', '#7f2c24'];
 
 const state = {
@@ -359,6 +360,14 @@ function renderTable() {
         actorButton.addEventListener('click', () => showActorDetail(nomination.actor_id));
         actorCell.appendChild(actorButton);
 
+        const filmCell = tr.children[3];
+        filmCell.textContent = '';
+        const filmButton = document.createElement('button');
+        filmButton.type = 'button';
+        filmButton.textContent = `${nomination.film} (${nomination.film_year})`;
+        filmButton.addEventListener('click', () => showFilmDetail(nomination.film_id));
+        filmCell.appendChild(filmButton);
+
         const resultTd = document.createElement('td');
         const badge = document.createElement('span');
         badge.className = Number(nomination.is_winner) === 1 ? 'badge win' : 'badge nominee';
@@ -381,20 +390,21 @@ function renderDashboard() {
 async function showActorDetail(actorId) {
     els.detailState.textContent = 'Loading';
     els.actorDetail.className = 'actor-detail empty-state';
-    els.actorDetail.textContent = 'Loading actor detail...';
+    els.actorDetail.textContent = 'Loading actor detail from TMDb...';
 
     try {
         const actor = await apiGet(`/actors/${actorId}`);
         let tmdb = null;
+        let tmdbError = null;
 
         try {
-            const search = await apiGet(`/tmdb/search/actor?q=${encodeURIComponent(actor.name)}`);
-            tmdb = Array.isArray(search.results) ? search.results[0] : null;
+            const enriched = await apiGet(`/enrich/actor/${actorId}`);
+            tmdb = enriched.tmdb || null;
         } catch (err) {
-            tmdb = null;
+            tmdbError = err.message;
         }
 
-        renderActorDetail(actor, tmdb);
+        renderActorDetail(actor, tmdb, tmdbError);
         els.detailState.textContent = tmdb ? 'Local + TMDb' : 'Local data';
     } catch (err) {
         els.detailState.textContent = 'Error';
@@ -403,7 +413,33 @@ async function showActorDetail(actorId) {
     }
 }
 
-function renderActorDetail(actor, tmdb) {
+async function showFilmDetail(filmId) {
+    els.detailState.textContent = 'Loading';
+    els.actorDetail.className = 'actor-detail empty-state';
+    els.actorDetail.textContent = 'Loading film detail from TMDb...';
+
+    try {
+        const film = await apiGet(`/films/${filmId}`);
+        let tmdb = null;
+        let tmdbError = null;
+
+        try {
+            const enriched = await apiGet(`/enrich/film/${filmId}`);
+            tmdb = enriched.tmdb || null;
+        } catch (err) {
+            tmdbError = err.message;
+        }
+
+        renderFilmDetail(film, tmdb, tmdbError);
+        els.detailState.textContent = tmdb ? 'Local + TMDb' : 'Local data';
+    } catch (err) {
+        els.detailState.textContent = 'Error';
+        els.actorDetail.className = 'actor-detail error-state';
+        els.actorDetail.textContent = err.message;
+    }
+}
+
+function renderActorDetail(actor, tmdb, tmdbError = null) {
     els.actorDetail.className = 'actor-detail';
     els.actorDetail.innerHTML = '';
 
@@ -426,12 +462,25 @@ function renderActorDetail(actor, tmdb) {
     appendTerm(dl, 'Nominations', actor.nominations.length);
     appendTerm(dl, 'Wins', actor.nominations.filter((item) => Number(item.is_winner) === 1).length);
     if (tmdb) {
-        appendTerm(dl, 'TMDb popularity', Math.round(tmdb.popularity || 0));
+        appendTerm(dl, 'Birthday', tmdb.birthday || 'Unknown');
+        appendTerm(dl, 'Birthplace', tmdb.place_of_birth || 'Unknown');
         appendTerm(dl, 'Known for', (tmdb.known_for_department || 'Acting'));
+        appendTerm(dl, 'TMDb popularity', Math.round(tmdb.popularity || 0));
     }
     summary.appendChild(dl);
     main.appendChild(summary);
     els.actorDetail.appendChild(main);
+
+    if (tmdb && tmdb.biography) {
+        const bio = document.createElement('p');
+        bio.className = 'tmdb-copy';
+        bio.textContent = trimText(tmdb.biography, 420);
+        els.actorDetail.appendChild(bio);
+    }
+
+    if (tmdbError) {
+        appendTmdbNotice(tmdbError);
+    }
 
     const list = document.createElement('ul');
     list.className = 'nomination-list';
@@ -442,6 +491,71 @@ function renderActorDetail(actor, tmdb) {
         list.appendChild(item);
     }
     els.actorDetail.appendChild(list);
+}
+
+function renderFilmDetail(film, tmdb, tmdbError = null) {
+    els.actorDetail.className = 'actor-detail';
+    els.actorDetail.innerHTML = '';
+
+    const main = document.createElement('div');
+    main.className = 'actor-main';
+
+    if (tmdb && tmdb.poster_path) {
+        const img = document.createElement('img');
+        img.src = `${TMDB_POSTER_BASE}${tmdb.poster_path}`;
+        img.alt = `${film.title} poster`;
+        main.appendChild(img);
+    }
+
+    const summary = document.createElement('div');
+    const title = document.createElement('h3');
+    title.textContent = `${film.title} (${film.year || 'Unknown year'})`;
+    summary.appendChild(title);
+
+    const dl = document.createElement('dl');
+    appendTerm(dl, 'Nominations', film.nominations.length);
+    appendTerm(dl, 'Wins', film.nominations.filter((item) => Number(item.is_winner) === 1).length);
+    if (tmdb) {
+        appendTerm(dl, 'Release', tmdb.release_date || 'Unknown');
+        appendTerm(dl, 'Rating', tmdb.vote_average ? `${Number(tmdb.vote_average).toFixed(1)} / 10` : 'Unknown');
+        appendTerm(dl, 'Runtime', tmdb.runtime ? `${tmdb.runtime} min` : 'Unknown');
+    }
+    summary.appendChild(dl);
+    main.appendChild(summary);
+    els.actorDetail.appendChild(main);
+
+    if (tmdb && tmdb.overview) {
+        const overview = document.createElement('p');
+        overview.className = 'tmdb-copy';
+        overview.textContent = tmdb.overview;
+        els.actorDetail.appendChild(overview);
+    }
+
+    if (tmdbError) {
+        appendTmdbNotice(tmdbError);
+    }
+
+    const list = document.createElement('ul');
+    list.className = 'nomination-list';
+    for (const nomination of film.nominations) {
+        const item = document.createElement('li');
+        const result = Number(nomination.is_winner) === 1 ? 'Winner' : 'Nominee';
+        item.textContent = `${nomination.year} - ${nomination.category}, ${nomination.actor} (${result})`;
+        list.appendChild(item);
+    }
+    els.actorDetail.appendChild(list);
+}
+
+function trimText(text, maxLength) {
+    if (text.length <= maxLength) return text;
+    return `${text.slice(0, maxLength).trim()}...`;
+}
+
+function appendTmdbNotice(message) {
+    const notice = document.createElement('p');
+    notice.className = 'tmdb-notice';
+    notice.textContent = `TMDb enrichment is configured but did not respond here: ${message}`;
+    els.actorDetail.appendChild(notice);
 }
 
 function appendTerm(dl, term, description) {

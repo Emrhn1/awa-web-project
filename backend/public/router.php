@@ -58,6 +58,8 @@ if ($path === '/' || $path === '/api') {
             'GET    /api/tmdb/movie/{id}',
             'GET    /api/tmdb/search/actor?q=...',
             'GET    /api/tmdb/search/movie?q=...',
+            'GET    /api/enrich/actor/{id}',
+            'GET    /api/enrich/film/{id}',
         ],
     ]);
     exit;
@@ -112,6 +114,12 @@ if ($method === 'GET') {
     }
     if ($path === '/api/tmdb/search/actor') { tmdb_search_actor(); exit; }
     if ($path === '/api/tmdb/search/movie') { tmdb_search_movie(); exit; }
+    if (preg_match('#^/api/enrich/actor/(\d+)$#', $path, $m)) {
+        enrich_actor((int)$m[1]); exit;
+    }
+    if (preg_match('#^/api/enrich/film/(\d+)$#', $path, $m)) {
+        enrich_film((int)$m[1]); exit;
+    }
 }
 
 not_found('Unknown route: ' . $path);
