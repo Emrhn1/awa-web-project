@@ -7,16 +7,16 @@ if (php_sapi_name() === 'cli-server') {
     }
 }
 
-require __DIR__ . '/../src/db.php';
-require __DIR__ . '/../src/env.php';
-require __DIR__ . '/../src/response.php';
-require __DIR__ . '/../src/validate.php';
-require __DIR__ . '/../src/controllers/nominations.php';
-require __DIR__ . '/../src/controllers/actors.php';
-require __DIR__ . '/../src/controllers/films.php';
-require __DIR__ . '/../src/controllers/editions.php';
-require __DIR__ . '/../src/controllers/categories.php';
-require __DIR__ . '/../src/controllers/tmdb.php';
+require_once __DIR__ . '/../src/db.php';
+require_once __DIR__ . '/../src/env.php';
+require_once __DIR__ . '/../src/response.php';
+require_once __DIR__ . '/../src/validate.php';
+require_once __DIR__ . '/../src/controllers/nominations.php';
+require_once __DIR__ . '/../src/controllers/actors.php';
+require_once __DIR__ . '/../src/controllers/films.php';
+require_once __DIR__ . '/../src/controllers/editions.php';
+require_once __DIR__ . '/../src/controllers/categories.php';
+require_once __DIR__ . '/../src/controllers/tmdb.php';
 
 set_exception_handler(function (Throwable $e) {
     server_error($e->getMessage());
@@ -58,6 +58,8 @@ if ($path === '/' || $path === '/api') {
             'GET    /api/tmdb/movie/{id}',
             'GET    /api/tmdb/search/actor?q=...',
             'GET    /api/tmdb/search/movie?q=...',
+            'GET    /api/enrich/actor/{id}',
+            'GET    /api/enrich/film/{id}',
         ],
     ]);
     exit;
@@ -112,6 +114,12 @@ if ($method === 'GET') {
     }
     if ($path === '/api/tmdb/search/actor') { tmdb_search_actor(); exit; }
     if ($path === '/api/tmdb/search/movie') { tmdb_search_movie(); exit; }
+    if (preg_match('#^/api/enrich/actor/(\d+)$#', $path, $m)) {
+        enrich_actor((int)$m[1]); exit;
+    }
+    if (preg_match('#^/api/enrich/film/(\d+)$#', $path, $m)) {
+        enrich_film((int)$m[1]); exit;
+    }
 }
 
 not_found('Unknown route: ' . $path);
