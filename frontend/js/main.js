@@ -8,6 +8,7 @@ const state = {
     actors: [],
     categories: [],
     editions: [],
+    newsSources: [],
     filtered: [],
 };
 
@@ -31,6 +32,25 @@ const els = {
     detailState: document.getElementById('detail-state'),
     exportCsv: document.getElementById('export-csv'),
     exportJson: document.getElementById('export-json'),
+    exportSvg: document.getElementById('export-svg'),
+    exportWebp: document.getElementById('export-webp'),
+    adminState: document.getElementById('admin-state'),
+    nominationForm: document.getElementById('nomination-form'),
+    nominationId: document.getElementById('nomination-id'),
+    adminYear: document.getElementById('admin-year'),
+    adminCategory: document.getElementById('admin-category'),
+    adminActor: document.getElementById('admin-actor'),
+    adminFilm: document.getElementById('admin-film'),
+    adminFilmYear: document.getElementById('admin-film-year'),
+    adminWinner: document.getElementById('admin-winner'),
+    clearNomination: document.getElementById('clear-nomination'),
+    sourceForm: document.getElementById('source-form'),
+    sourceId: document.getElementById('source-id'),
+    sourceName: document.getElementById('source-name'),
+    sourceUrl: document.getElementById('source-url'),
+    sourceEnabled: document.getElementById('source-enabled'),
+    clearSource: document.getElementById('clear-source'),
+    sourceList: document.getElementById('source-list'),
 };
 
 function setApiState(kind, message) {
@@ -44,6 +64,19 @@ async function apiGet(path) {
         throw new Error(`${path} returned HTTP ${res.status}`);
     }
     return res.json();
+}
+
+async function apiSend(path, method, body = null) {
+    const res = await fetch(`${API_BASE}${path}`, {
+        method,
+        headers: body ? { 'Content-Type': 'application/json' } : {},
+        body: body ? JSON.stringify(body) : null,
+    });
+    const payload = await res.json().catch(() => ({}));
+    if (!res.ok) {
+        throw new Error(payload.error || `${path} returned HTTP ${res.status}`);
+    }
+    return payload;
 }
 
 function uniqueValues(items, key) {
@@ -71,8 +104,12 @@ function setupFilters() {
     const years = uniqueValues(state.nominations, 'year').sort((a, b) => b - a);
     const categories = uniqueValues(state.nominations, 'category').sort();
 
+    els.yearFilter.innerHTML = '<option value="">All years</option>';
+    els.categoryFilter.innerHTML = '<option value="">All categories</option>';
+    els.adminCategory.innerHTML = '';
     fillSelect(els.yearFilter, years);
     fillSelect(els.categoryFilter, categories);
+    fillSelect(els.adminCategory, categories);
 
     for (const input of [els.yearFilter, els.categoryFilter, els.winnerFilter, els.searchFilter]) {
         input.addEventListener('input', renderDashboard);
@@ -122,6 +159,11 @@ function emptySvgMessage(container, message) {
     p.className = 'empty-state';
     p.textContent = message;
     container.appendChild(p);
+}
+
+function replaceContent(container, child) {
+    container.innerHTML = '';
+    container.appendChild(child);
 }
 
 function svgEl(name, attrs = {}) {
@@ -185,7 +227,7 @@ function renderYearChart() {
         svg.appendChild(yearLabel);
     });
 
-    els.yearChart.replaceChildren(svg);
+    replaceContent(els.yearChart, svg);
 }
 
 function renderCategoryChart() {
@@ -205,7 +247,8 @@ function renderCategoryChart() {
     const matrix = categories.map((category) => years.map((year) => (
         state.filtered.filter((item) => item.year === year && item.category === category).length
     )));
-    const max = Math.max(1, ...matrix.flat());
+    const flatCounts = matrix.reduce((all, row) => all.concat(row), []);
+    const max = Math.max(1, ...flatCounts);
     const svg = svgEl('svg', { viewBox: `0 0 ${width} ${height}`, role: 'presentation' });
 
     svg.appendChild(svgEl('line', {
@@ -251,7 +294,7 @@ function renderCategoryChart() {
         svg.appendChild(text);
     });
 
-    els.categoryChart.replaceChildren(svg);
+    replaceContent(els.categoryChart, svg);
 }
 
 function polarToCartesian(cx, cy, radius, angle) {
@@ -320,7 +363,7 @@ function renderWinnerChart() {
         svg.appendChild(text);
     });
 
-    els.winnerChart.replaceChildren(svg);
+    replaceContent(els.winnerChart, svg);
 }
 
 function renderTable() {
@@ -329,7 +372,7 @@ function renderTable() {
     if (!state.filtered.length) {
         const tr = document.createElement('tr');
         const td = document.createElement('td');
-        td.colSpan = 5;
+        td.colSpan = 6;
         td.className = 'empty-state';
         td.textContent = 'No nominations match the current filters.';
         tr.appendChild(td);
@@ -374,6 +417,19 @@ function renderTable() {
         badge.textContent = Number(nomination.is_winner) === 1 ? 'Winner' : 'Nominee';
         resultTd.appendChild(badge);
         tr.appendChild(resultTd);
+
+        const actionsTd = document.createElement('td');
+        actionsTd.className = 'table-actions';
+        const editButton = document.createElement('button');
+        editButton.type = 'button';
+        editButton.textContent = 'Edit';
+        editButton.addEventListener('click', () => fillNominationForm(nomination));
+        const deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => deleteNomination(nomination.id));
+        actionsTd.append(editButton, deleteButton);
+        tr.appendChild(actionsTd);
         els.nominationsBody.appendChild(tr);
     }
 }
@@ -405,6 +461,7 @@ async function showActorDetail(actorId) {
         }
 
         renderActorDetail(actor, tmdb, tmdbError);
+        loadActorNews(actor.name);
         els.detailState.textContent = tmdb ? 'Local + TMDb' : 'Local data';
     } catch (err) {
         els.detailState.textContent = 'Error';
@@ -566,6 +623,207 @@ function appendTerm(dl, term, description) {
     dl.append(dt, dd);
 }
 
+async function loadActorNews(actorName) {
+    const section = document.createElement('section');
+    section.className = 'news-panel';
+    const title = document.createElement('h4');
+    title.textContent = 'Related news';
+    const body = document.createElement('div');
+    body.className = 'empty-state';
+    body.textContent = 'Loading news from configured sources...';
+    section.append(title, body);
+    els.actorDetail.appendChild(section);
+
+    try {
+        const data = await apiGet(`/news?actor=${encodeURIComponent(actorName)}&limit=6`);
+        body.className = 'news-list';
+        body.innerHTML = '';
+
+        if (!data.items || data.items.length === 0) {
+            body.className = 'empty-state';
+            body.textContent = data.errors && data.errors.length
+                ? 'Configured news sources did not return readable articles.'
+                : 'No related news found.';
+            return;
+        }
+
+        for (const item of data.items) {
+            const article = document.createElement('article');
+            const link = document.createElement('a');
+            link.href = item.url;
+            link.target = '_blank';
+            link.rel = 'noreferrer';
+            link.textContent = item.title;
+            const meta = document.createElement('span');
+            meta.textContent = `${item.source}${item.published_at ? ` - ${new Date(item.published_at).toLocaleDateString()}` : ''}`;
+            article.append(link, meta);
+            if (item.summary) {
+                const summary = document.createElement('p');
+                summary.textContent = item.summary;
+                article.appendChild(summary);
+            }
+            body.appendChild(article);
+        }
+    } catch (err) {
+        body.className = 'error-state';
+        body.textContent = err.message;
+    }
+}
+
+function fillNominationForm(nomination) {
+    els.nominationId.value = nomination.id;
+    els.adminYear.value = nomination.year;
+    els.adminCategory.value = nomination.category;
+    els.adminActor.value = nomination.actor;
+    els.adminFilm.value = nomination.film;
+    els.adminFilmYear.value = nomination.film_year;
+    els.adminWinner.value = String(nomination.is_winner);
+    els.adminState.textContent = `Editing nomination #${nomination.id}`;
+    els.nominationForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function clearNominationForm() {
+    els.nominationId.value = '';
+    els.nominationForm.reset();
+    els.adminWinner.value = '0';
+    els.adminState.textContent = 'Manage nominations and news sources';
+}
+
+async function saveNomination(event) {
+    event.preventDefault();
+    const id = els.nominationId.value;
+    const payload = {
+        year: Number(els.adminYear.value),
+        category: els.adminCategory.value,
+        actor: els.adminActor.value.trim(),
+        film: els.adminFilm.value.trim(),
+        film_year: Number(els.adminFilmYear.value),
+        is_winner: Number(els.adminWinner.value),
+    };
+
+    try {
+        await apiSend(id ? `/nominations/${id}` : '/nominations', id ? 'PUT' : 'POST', payload);
+        els.adminState.textContent = id ? 'Nomination updated' : 'Nomination created';
+        clearNominationForm();
+        await reloadCoreData();
+    } catch (err) {
+        els.adminState.textContent = err.message;
+    }
+}
+
+async function deleteNomination(id) {
+    if (!confirm(`Delete nomination #${id}?`)) return;
+    try {
+        await apiSend(`/nominations/${id}`, 'DELETE');
+        els.adminState.textContent = `Nomination #${id} deleted`;
+        await reloadCoreData();
+    } catch (err) {
+        els.adminState.textContent = err.message;
+    }
+}
+
+function renderNewsSources() {
+    els.sourceList.innerHTML = '';
+    if (!state.newsSources.length) {
+        const empty = document.createElement('p');
+        empty.className = 'empty-state';
+        empty.textContent = 'No news sources configured.';
+        els.sourceList.appendChild(empty);
+        return;
+    }
+
+    for (const source of state.newsSources) {
+        const row = document.createElement('article');
+        const summary = document.createElement('div');
+        const name = document.createElement('strong');
+        name.textContent = source.name;
+        const status = document.createElement('span');
+        status.textContent = Number(source.is_enabled) === 1 ? 'Enabled' : 'Disabled';
+        summary.append(name, status);
+
+        const actions = document.createElement('div');
+        const edit = document.createElement('button');
+        edit.type = 'button';
+        edit.textContent = 'Edit';
+        edit.addEventListener('click', () => fillSourceForm(source));
+        const del = document.createElement('button');
+        del.type = 'button';
+        del.textContent = 'Delete';
+        del.addEventListener('click', () => deleteSource(source.id));
+        actions.append(edit, del);
+        row.append(summary, actions);
+        els.sourceList.appendChild(row);
+    }
+}
+
+function fillSourceForm(source) {
+    els.sourceId.value = source.id;
+    els.sourceName.value = source.name;
+    els.sourceUrl.value = source.url_template;
+    els.sourceEnabled.value = String(source.is_enabled);
+    els.adminState.textContent = `Editing news source #${source.id}`;
+}
+
+function clearSourceForm() {
+    els.sourceId.value = '';
+    els.sourceForm.reset();
+    els.sourceEnabled.value = '1';
+}
+
+async function saveSource(event) {
+    event.preventDefault();
+    const id = els.sourceId.value;
+    const payload = {
+        name: els.sourceName.value.trim(),
+        url_template: els.sourceUrl.value.trim(),
+        is_enabled: Number(els.sourceEnabled.value),
+    };
+
+    try {
+        await apiSend(id ? `/news-sources/${id}` : '/news-sources', id ? 'PUT' : 'POST', payload);
+        els.adminState.textContent = id ? 'News source updated' : 'News source created';
+        clearSourceForm();
+        state.newsSources = await apiGet('/news-sources');
+        renderNewsSources();
+    } catch (err) {
+        els.adminState.textContent = err.message;
+    }
+}
+
+async function deleteSource(id) {
+    if (!confirm(`Delete news source #${id}?`)) return;
+    try {
+        await apiSend(`/news-sources/${id}`, 'DELETE');
+        els.adminState.textContent = `News source #${id} deleted`;
+        state.newsSources = await apiGet('/news-sources');
+        renderNewsSources();
+    } catch (err) {
+        els.adminState.textContent = err.message;
+    }
+}
+
+function setupAdmin() {
+    els.nominationForm.addEventListener('submit', saveNomination);
+    els.clearNomination.addEventListener('click', clearNominationForm);
+    els.sourceForm.addEventListener('submit', saveSource);
+    els.clearSource.addEventListener('click', clearSourceForm);
+}
+
+async function reloadCoreData() {
+    const [nominations, actors, categories, editions] = await Promise.all([
+        apiGet('/nominations'),
+        apiGet('/actors'),
+        apiGet('/categories'),
+        apiGet('/awards-editions'),
+    ]);
+
+    state.nominations = nominations;
+    state.actors = actors;
+    state.categories = categories;
+    state.editions = editions;
+    renderDashboard();
+}
+
 function downloadFile(filename, mimeType, content) {
     const blob = new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
@@ -576,37 +834,82 @@ function downloadFile(filename, mimeType, content) {
     URL.revokeObjectURL(url);
 }
 
-function exportCsv() {
-    const headers = ['year', 'category', 'actor', 'film', 'film_year', 'is_winner'];
-    const rows = state.filtered.map((item) => headers.map((key) => {
-        const value = String(item[key] ?? '');
-        return `"${value.replaceAll('"', '""')}"`;
-    }).join(','));
-
-    downloadFile('awa-nominations.csv', 'text/csv;charset=utf-8', [headers.join(','), ...rows].join('\n'));
+function currentExportQuery() {
+    const params = new URLSearchParams();
+    if (els.yearFilter.value) params.set('year', els.yearFilter.value);
+    if (els.categoryFilter.value) params.set('category', els.categoryFilter.value);
+    if (els.winnerFilter.value !== '') params.set('winner', els.winnerFilter.value);
+    if (els.searchFilter.value.trim()) params.set('q', els.searchFilter.value.trim());
+    const query = params.toString();
+    return query ? `?${query}` : '';
 }
 
-function exportJson() {
-    downloadFile('awa-nominations.json', 'application/json;charset=utf-8', JSON.stringify(state.filtered, null, 2));
+function exportFromApi(format) {
+    window.location.href = `${API_BASE}/export/${format}${currentExportQuery()}`;
+}
+
+function exportVisibleChartWebp() {
+    const svg = els.yearChart.querySelector('svg');
+    if (!svg) {
+        exportFromApi('webp');
+        return;
+    }
+
+    const source = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+
+    img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 960;
+        canvas.height = 540;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#f4f1ea';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        canvas.toBlob((webpBlob) => {
+            if (!webpBlob) {
+                exportFromApi('webp');
+                return;
+            }
+            const downloadUrl = URL.createObjectURL(webpBlob);
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            a.download = 'awa-nominations.webp';
+            a.click();
+            URL.revokeObjectURL(downloadUrl);
+        }, 'image/webp', 0.9);
+    };
+    img.onerror = () => {
+        URL.revokeObjectURL(url);
+        exportFromApi('webp');
+    };
+    img.src = url;
 }
 
 async function init() {
     try {
-        const [meta, nominations, actors, categories, editions] = await Promise.all([
+        const [meta, nominations, actors, categories, editions, newsSources] = await Promise.all([
             apiGet(''),
             apiGet('/nominations'),
             apiGet('/actors'),
             apiGet('/categories'),
             apiGet('/awards-editions'),
+            apiGet('/news-sources'),
         ]);
 
         state.nominations = nominations;
         state.actors = actors;
         state.categories = categories;
         state.editions = editions;
+        state.newsSources = newsSources;
 
         setApiState('online', `${meta.name} v${meta.version}`);
         setupFilters();
+        setupAdmin();
+        renderNewsSources();
         renderDashboard();
     } catch (err) {
         setApiState('offline', 'API unavailable');
@@ -619,7 +922,9 @@ async function init() {
     }
 }
 
-els.exportCsv.addEventListener('click', exportCsv);
-els.exportJson.addEventListener('click', exportJson);
+els.exportCsv.addEventListener('click', () => exportFromApi('csv'));
+els.exportJson.addEventListener('click', () => exportFromApi('json'));
+els.exportSvg.addEventListener('click', () => exportFromApi('svg'));
+els.exportWebp.addEventListener('click', exportVisibleChartWebp);
 
 init();
