@@ -17,6 +17,8 @@ require_once __DIR__ . '/../src/controllers/films.php';
 require_once __DIR__ . '/../src/controllers/editions.php';
 require_once __DIR__ . '/../src/controllers/categories.php';
 require_once __DIR__ . '/../src/controllers/tmdb.php';
+require_once __DIR__ . '/../src/controllers/news.php';
+require_once __DIR__ . '/../src/controllers/export.php';
 
 set_exception_handler(function (Throwable $e) {
     server_error($e->getMessage());
@@ -40,8 +42,8 @@ if ($method === 'OPTIONS') {
 if ($path === '/' || $path === '/api') {
     json_response([
         'name'      => 'AwA API',
-        'version'   => '0.2.0',
-        'phase'     => 2,
+        'version'   => '0.4.0',
+        'phase'     => 4,
         'endpoints' => [
             'GET    /api/nominations',
             'GET    /api/nominations/{id}',
@@ -60,6 +62,15 @@ if ($path === '/' || $path === '/api') {
             'GET    /api/tmdb/search/movie?q=...',
             'GET    /api/enrich/actor/{id}',
             'GET    /api/enrich/film/{id}',
+            'GET    /api/news?actor=...',
+            'GET    /api/news-sources',
+            'POST   /api/news-sources',
+            'PUT    /api/news-sources/{id}',
+            'DELETE /api/news-sources/{id}',
+            'GET    /api/export/csv',
+            'GET    /api/export/json',
+            'GET    /api/export/svg',
+            'GET    /api/export/webp',
         ],
     ]);
     exit;
@@ -120,6 +131,23 @@ if ($method === 'GET') {
     if (preg_match('#^/api/enrich/film/(\d+)$#', $path, $m)) {
         enrich_film((int)$m[1]); exit;
     }
+    if ($path === '/api/news') { list_news(); exit; }
+    if (preg_match('#^/api/export/(csv|json|svg|webp)$#', $path, $m)) {
+        export_data($m[1]); exit;
+    }
+}
+
+if ($path === '/api/news-sources') {
+    if ($method === 'GET')  { list_news_sources(); exit; }
+    if ($method === 'POST') { create_news_source(); exit; }
+    json_response(['error' => 'Method not allowed'], 405); exit;
+}
+if (preg_match('#^/api/news-sources/(\d+)$#', $path, $m)) {
+    $id = (int)$m[1];
+    if ($method === 'GET')    { get_news_source($id); exit; }
+    if ($method === 'PUT')    { update_news_source($id); exit; }
+    if ($method === 'DELETE') { delete_news_source($id); exit; }
+    json_response(['error' => 'Method not allowed'], 405); exit;
 }
 
 not_found('Unknown route: ' . $path);

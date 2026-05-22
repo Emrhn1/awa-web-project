@@ -22,6 +22,19 @@ function v_str($value, int $maxLen = 255): ?string {
     return $value;
 }
 
+function v_url_template($value): ?string {
+    $value = v_str($value, 1000);
+    if ($value === null) return null;
+    if (!str_contains($value, '{query}')) return null;
+
+    $testUrl = str_replace('{query}', 'test', $value);
+    if (!filter_var($testUrl, FILTER_VALIDATE_URL)) return null;
+    $scheme = parse_url($testUrl, PHP_URL_SCHEME);
+    if (!in_array($scheme, ['http', 'https'], true)) return null;
+
+    return $value;
+}
+
 function read_json_body(): array {
     $raw = file_get_contents('php://input');
     if (!$raw) return [];
