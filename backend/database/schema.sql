@@ -46,8 +46,19 @@ CREATE TABLE IF NOT EXISTS nominations (
     is_winner     INTEGER NOT NULL DEFAULT 0 CHECK (is_winner IN (0, 1))
 );
 
+-- Configurable external news providers used by the Phase 4 news proxy.
+-- The URL template must contain {query}; the server replaces it safely.
+CREATE TABLE IF NOT EXISTS news_sources (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    name          TEXT NOT NULL UNIQUE,
+    url_template  TEXT NOT NULL,
+    is_enabled    INTEGER NOT NULL DEFAULT 1 CHECK (is_enabled IN (0, 1)),
+    created_at    TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX IF NOT EXISTS idx_nominations_edition  ON nominations(edition_id);
 CREATE INDEX IF NOT EXISTS idx_nominations_category ON nominations(category_id);
 CREATE INDEX IF NOT EXISTS idx_nominations_actor    ON nominations(actor_id);
 CREATE INDEX IF NOT EXISTS idx_nominations_film     ON nominations(film_id);
 CREATE INDEX IF NOT EXISTS idx_nominations_winner   ON nominations(is_winner);
+CREATE INDEX IF NOT EXISTS idx_news_sources_enabled ON news_sources(is_enabled);

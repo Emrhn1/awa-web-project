@@ -7,11 +7,31 @@ function _tmdb_request(string $path): array {
         return [null, 500, 'TMDB_API_KEY not configured (set it in .env)'];
     }
 
-    $url = 'https://api.themoviedb.org/3' . $path
+    $url = 'http://api.themoviedb.org/3' . $path
          . (str_contains($path, '?') ? '&' : '?')
          . 'api_key=' . urlencode($key);
 
-    if (function_exists('curl_init')) {
+    $body = false;
+    $code = 200;
+    $curlError = null;
+
+    $context = stream_context_create([
+        'http' => [
+            'method'  => 'GET',
+            'header'  => "Accept: application/json\r\n",
+            'timeout' => 8,
+        ],
+    ]);
+    $body = @file_get_contents($url, false, $context);
+    $streamError = error_get_last()['message'] ?? null;
+    $headers = function_exists('http_get_last_response_headers')
+        ? http_get_last_response_headers()
+        : ($http_response_header ?? []);
+    if (isset($headers[0]) && preg_match('#\s(\d{3})\s#', $headers[0], $m)) {
+        $code = (int)$m[1];
+    }
+
+    if ($body === false && function_exists('curl_init')) {
         $ch = curl_init($url);
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
@@ -22,31 +42,15 @@ function _tmdb_request(string $path): array {
         ]);
         $body = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $err  = curl_error($ch);
-        curl_close($ch);
+        $curlError = curl_error($ch);
 
         if ($body === false) {
-            return [null, 500, 'TMDb request failed: ' . $err];
+            return [null, 500, 'TMDb request failed: ' . $curlError];
         }
-    } else {
-        $context = stream_context_create([
-            'http' => [
-                'method'  => 'GET',
-                'header'  => "Accept: application/json\r\n",
-                'timeout' => 8,
-            ],
-        ]);
-        $body = @file_get_contents($url, false, $context);
-        $code = 200;
-        $headers = function_exists('http_get_last_response_headers')
-            ? http_get_last_response_headers()
-            : ($http_response_header ?? []);
-        if (isset($headers[0]) && preg_match('#\s(\d{3})\s#', $headers[0], $m)) {
-            $code = (int)$m[1];
-        }
-        if ($body === false) {
-            return [null, 500, 'TMDb request failed'];
-        }
+    }
+
+    if ($body === false) {
+        return [null, 500, 'TMDb request failed' . ($streamError ? ': ' . $streamError : '')];
     }
 
     // TMDb returns gzip-compressed responses; decompress if needed.

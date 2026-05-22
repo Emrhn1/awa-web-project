@@ -16,6 +16,8 @@ return [
         'Best Supporting Actress',
     ],
 
+    'news_sources' => [],
+
     'nominations' => [
         [2021, 'Best Actor', 'Chadwick Boseman', "Ma Rainey's Black Bottom", 2020, 1],
         [2021, 'Best Actor', 'Riz Ahmed', 'Sound of Metal', 2020, 0],

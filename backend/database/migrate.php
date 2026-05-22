@@ -42,6 +42,15 @@ foreach ($seed['categories'] as $name) {
 }
 echo "Inserted " . count($seed['categories']) . " categories.\n";
 
+// news sources
+$stmt = $pdo->prepare(
+    'INSERT OR IGNORE INTO news_sources (name, url_template, is_enabled) VALUES (?, ?, ?)'
+);
+foreach ($seed['news_sources'] as [$name, $urlTemplate, $enabled]) {
+    $stmt->execute([$name, $urlTemplate, $enabled]);
+}
+echo "Inserted " . count($seed['news_sources']) . " news sources.\n";
+
 // gather unique actors + films from nominations
 $actors = [];
 $films = [];
