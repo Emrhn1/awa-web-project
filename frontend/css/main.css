@@ -64,7 +64,7 @@ select:focus-visible {
     gap: 1.5rem;
     justify-content: space-between;
     margin: 0 auto;
-    max-width: 1240px;
+    max-width: 1440px;
     padding: 2rem 1.25rem 1rem;
 }
 
@@ -125,7 +125,7 @@ h2 {
     display: grid;
     gap: 1rem;
     margin: 0 auto;
-    max-width: 1240px;
+    max-width: 1440px;
     padding: 0 1.25rem 2rem;
 }
 
@@ -133,7 +133,8 @@ h2 {
 .metrics,
 .chart-panel,
 .table-panel,
-.detail-panel {
+.detail-panel,
+.admin-panel {
     background: var(--surface);
     border: 1px solid var(--line);
     box-shadow: var(--shadow);
@@ -201,7 +202,8 @@ select {
 
 .chart-panel,
 .table-panel,
-.detail-panel {
+.detail-panel,
+.admin-panel {
     border-radius: 8px;
     min-width: 0;
     padding: 1rem;
@@ -273,11 +275,12 @@ select {
     align-items: start;
     display: grid;
     gap: 1rem;
-    grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.8fr);
+    grid-template-columns: minmax(780px, 2.35fr) minmax(320px, 0.75fr);
 }
 
 .export-actions {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
 }
 
@@ -294,12 +297,19 @@ select {
 }
 
 .table-wrap {
-    overflow-x: auto;
+    max-height: 560px;
+    overflow: auto;
+    position: relative;
+}
+
+.detail-panel {
+    max-height: 642px;
+    overflow: auto;
 }
 
 table {
     border-collapse: collapse;
-    min-width: 720px;
+    min-width: 920px;
     width: 100%;
 }
 
@@ -312,9 +322,29 @@ td {
 }
 
 th {
+    background: var(--surface);
     color: var(--muted);
     font-size: 0.78rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
     text-transform: uppercase;
+}
+
+th:last-child,
+td:last-child {
+    background: var(--surface);
+    box-shadow: -10px 0 16px rgba(255, 255, 255, 0.92);
+    position: sticky;
+    right: 0;
+}
+
+td:last-child {
+    z-index: 1;
+}
+
+th:last-child {
+    z-index: 3;
 }
 
 td button {
@@ -331,6 +361,12 @@ td button:focus-visible {
     background: transparent;
     color: var(--accent);
     text-decoration: underline;
+}
+
+.table-actions {
+    display: flex;
+    gap: 0.65rem;
+    white-space: nowrap;
 }
 
 .badge {
@@ -417,6 +453,108 @@ td button:focus-visible {
     padding: 0.65rem 0;
 }
 
+.news-panel {
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0.6rem;
+    padding-top: 0.85rem;
+}
+
+.news-panel h4 {
+    margin: 0;
+}
+
+.news-list {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.news-list article {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.news-list a {
+    color: var(--accent-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.news-list a:hover,
+.news-list a:focus-visible {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.news-list span,
+.source-list span {
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.news-list p {
+    color: var(--muted);
+    font-size: 0.86rem;
+    margin: 0;
+}
+
+.admin-panel {
+    display: grid;
+    gap: 1rem;
+}
+
+.admin-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+}
+
+.admin-form {
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.form-actions button[type="button"] {
+    background: #fff;
+    color: var(--accent-dark);
+}
+
+.source-list {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.source-list article {
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0.75rem;
+}
+
+.source-list article > div {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.source-list article > div:last-child {
+    display: flex;
+    gap: 0.65rem;
+}
+
 .empty-state,
 .error-state {
     background: var(--surface-soft);
@@ -447,7 +585,8 @@ td button:focus-visible {
 
     .metrics,
     .chart-grid,
-    .content-grid {
+    .content-grid,
+    .admin-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -456,8 +595,16 @@ td button:focus-visible {
         grid-column: auto;
     }
 
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
     .detail-panel {
         grid-column: span 2;
+    }
+
+    .admin-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -473,7 +620,8 @@ td button:focus-visible {
     .toolbar,
     .metrics,
     .chart-grid,
-    .content-grid {
+    .content-grid,
+    .admin-grid {
         grid-template-columns: 1fr;
     }
 
@@ -495,5 +643,10 @@ td button:focus-visible {
 
     .actor-main {
         grid-template-columns: 1fr;
+    }
+
+    .source-list article {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }
