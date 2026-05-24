@@ -228,6 +228,9 @@ select {
 }
 
 .chart {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     min-height: 250px;
     width: 100%;
 }
@@ -237,7 +240,7 @@ select {
     height: auto;
     max-width: 100%;
     overflow: visible;
-    width: 100%;
+    width: min(100%, 560px);
 }
 
 .chart text {
@@ -269,6 +272,10 @@ select {
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+.chart-small svg {
+    width: min(100%, 300px);
 }
 
 .content-grid {
@@ -364,9 +371,11 @@ td button:focus-visible {
 }
 
 .table-actions {
-    display: flex;
-    gap: 0.65rem;
     white-space: nowrap;
+}
+
+.table-actions button + button {
+    margin-left: 0.65rem;
 }
 
 .badge {
