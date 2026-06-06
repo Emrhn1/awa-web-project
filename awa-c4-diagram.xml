@@ -1,424 +1,203 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" version="21.0.0">
-
-  <!-- ============================================================ -->
-  <!-- PAGE 1: C4 Level 1 — System Context                         -->
-  <!-- ============================================================ -->
+<mxfile host="app.diagrams.net" pages="3">
   <diagram name="L1 - System Context" id="page1">
-    <mxGraphModel pageWidth="1169" pageHeight="827" grid="1" gridSize="10">
+    <mxGraphModel dx="1044" dy="775" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-
-        <!-- Title -->
-        <mxCell id="p1_title"
-          value="AwA — C4 Level 1: System Context"
-          style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="250" y="20" width="620" height="40" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p1_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;" value="AwA — C4 Level 1: System Context" vertex="1">
+          <mxGeometry height="40" width="620" x="250" y="20" as="geometry" />
         </mxCell>
-
-        <!-- User -->
-        <mxCell id="p1_user"
-          value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;&lt;small&gt;Views SAG Awards nominations, applies filters, manages entries via the web dashboard.&lt;/small&gt;"
-          style="shape=mxgraph.c4.person2;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="480" y="90" width="170" height="160" as="geometry"/>
+        <mxCell id="p1_user" parent="1" style="shape=mxgraph.c4.person2;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;&lt;small&gt;Views SAG Awards nominations, applies filters, manages entries via the web dashboard.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="160" width="170" x="495" y="90" as="geometry" />
         </mxCell>
-
-        <!-- AwA System -->
-        <mxCell id="p1_awa"
-          value="&lt;b&gt;AwA System&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Visualizes SAG Awards nominations. Provides CRUD, filtering, charts, CSV/JSON/SVG/WebP export, TMDb enrichment, and news aggregation.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="420" y="370" width="280" height="130" as="geometry"/>
+        <mxCell id="p1_awa" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;AwA System&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Visualizes SAG Awards nominations. Provides CRUD, filtering, charts, CSV/JSON/SVG/WebP export, TMDb enrichment, and news aggregation.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="280" x="440" y="370" as="geometry" />
         </mxCell>
-
-        <!-- TMDb API -->
-        <mxCell id="p1_tmdb"
-          value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Provides actor biographies, profile photos, and movie details via REST API. Key kept server-side.&lt;/small&gt;"
-          style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="790" y="370" width="220" height="130" as="geometry"/>
+        <mxCell id="p1_tmdb" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Provides actor biographies, profile photos, and movie details via REST API. Key kept server-side.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="220" x="949" y="370" as="geometry" />
         </mxCell>
-
-        <!-- RSS Feeds -->
-        <mxCell id="p1_rss"
-          value="&lt;b&gt;RSS News Feeds&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Configurable external news sources. Provides actor-related articles via RSS protocol.&lt;/small&gt;"
-          style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="100" y="370" width="220" height="130" as="geometry"/>
+        <mxCell id="p1_rss" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;RSS News Feeds&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Configurable external news sources. Provides actor-related articles via RSS protocol.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="220" x="20" y="370" as="geometry" />
         </mxCell>
-
-        <!-- User → AwA -->
-        <mxCell id="p1_e1" value="Views, filters and manages nominations [HTTPS]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p1_user" target="p1_awa" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p1_e1" edge="1" parent="1" source="p1_user" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p1_awa" value="Views, filters and manages nominations [HTTPS]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- AwA → TMDb -->
-        <mxCell id="p1_e2" value="Fetches actor/film details [HTTPS/JSON]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p1_awa" target="p1_tmdb" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p1_e2" edge="1" parent="1" source="p1_awa" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p1_tmdb" value="Fetches actor/film details [HTTPS/JSON]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- AwA → RSS -->
-        <mxCell id="p1_e3" value="Fetches news articles [HTTPS/RSS]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p1_awa" target="p1_rss" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p1_e3" edge="1" parent="1" source="p1_awa" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p1_rss" value="Fetches news articles [HTTPS/RSS]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- Legend -->
-        <mxCell id="p1_leg1" value="[Person]" style="rounded=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;arcSize=5;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="60" y="600" width="120" height="40" as="geometry"/>
+        <mxCell id="p1_leg1" parent="1" style="rounded=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;arcSize=5;fontSize=11;" value="[Person]" vertex="1">
+          <mxGeometry height="40" width="120" x="330" y="640" as="geometry" />
         </mxCell>
-        <mxCell id="p1_leg2" value="[Internal System]" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="200" y="600" width="160" height="40" as="geometry"/>
+        <mxCell id="p1_leg2" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;fontSize=11;" value="[Internal System]" vertex="1">
+          <mxGeometry height="40" width="160" x="470" y="640" as="geometry" />
         </mxCell>
-        <mxCell id="p1_leg3" value="[External System]" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="380" y="600" width="160" height="40" as="geometry"/>
+        <mxCell id="p1_leg3" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;fontSize=11;" value="[External System]" vertex="1">
+          <mxGeometry height="40" width="160" x="650" y="640" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-
-  <!-- ============================================================ -->
-  <!-- PAGE 2: C4 Level 2 — Container                              -->
-  <!-- ============================================================ -->
   <diagram name="L2 - Container" id="page2">
-    <mxGraphModel pageWidth="1169" pageHeight="827" grid="1" gridSize="10">
+    <mxGraphModel dx="1253" dy="930" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-
-        <!-- Title -->
-        <mxCell id="p2_title"
-          value="AwA — C4 Level 2: Container"
-          style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="250" y="20" width="620" height="40" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p2_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;" value="AwA — C4 Level 2: Container" vertex="1">
+          <mxGeometry height="40" width="620" x="265" as="geometry" />
         </mxCell>
-
-        <!-- User -->
-        <mxCell id="p2_user"
-          value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;&lt;small&gt;Views SAG Awards data and manages nominations via browser.&lt;/small&gt;"
-          style="shape=mxgraph.c4.person2;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="490" y="50" width="160" height="140" as="geometry"/>
+        <mxCell id="p2_user" parent="1" style="shape=mxgraph.c4.person2;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;&lt;small&gt;Views SAG Awards data and manages nominations via browser.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="120" width="180" x="485" y="30" as="geometry" />
         </mxCell>
-
-        <!-- System Boundary -->
-        <mxCell id="p2_boundary"
-          value="&lt;b&gt;AwA System&lt;/b&gt;"
-          style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0E52A0;fontColor=#0E52A0;dashed=1;dashPattern=8 4;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="80" y="240" width="1000" height="460" as="geometry"/>
+        <mxCell id="p2_boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0E52A0;fontColor=#0E52A0;dashed=1;dashPattern=8 4;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=5;" value="&lt;b&gt;AwA System&lt;/b&gt;" vertex="1">
+          <mxGeometry height="600" width="1110" x="20" y="160" as="geometry" />
         </mxCell>
-
-        <!-- Frontend Container -->
-        <mxCell id="p2_frontend"
-          value="&lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;[Container: Browser — HTML/CSS/JS]&lt;br&gt;&lt;br&gt;&lt;small&gt;Single-page dashboard. Renders nominations table, SVG bar/line/pie charts, TMDb detail panel, admin forms, and export buttons. Calls backend via fetch().&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="120" y="340" width="260" height="150" as="geometry"/>
+        <mxCell id="p2_frontend" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;[Container: Browser — HTML/CSS/JS]&lt;br&gt;&lt;br&gt;&lt;small&gt;Single-page dashboard. Renders nominations table, SVG bar/line/pie charts, TMDb detail panel, admin forms, and export buttons. Calls backend via fetch().&lt;/small&gt;" vertex="1">
+          <mxGeometry height="150" width="260" x="50" y="420" as="geometry" />
         </mxCell>
-
-        <!-- Backend API Container -->
-        <mxCell id="p2_backend"
-          value="&lt;b&gt;Backend API&lt;/b&gt;&lt;br&gt;[Container: PHP Built-in Server]&lt;br&gt;&lt;br&gt;&lt;small&gt;Vanilla PHP, no framework. REST API with routing, CRUD, filtering, TMDb reverse proxy, RSS news aggregation, and multi-format export.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="460" y="340" width="260" height="150" as="geometry"/>
+        <mxCell id="p2_backend" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;Backend API&lt;/b&gt;&lt;br&gt;[Container: PHP Built-in Server]&lt;br&gt;&lt;br&gt;&lt;small&gt;Vanilla PHP, no framework. REST API with routing, CRUD, filtering, TMDb reverse proxy, RSS news aggregation, multi-format export (CSV/JSON/SVG/WebP), and CSV/JSON import.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="150" width="260" x="460" y="300" as="geometry" />
         </mxCell>
-
-        <!-- SQLite Database -->
-        <mxCell id="p2_sqlite"
-          value="&lt;b&gt;awa.sqlite&lt;/b&gt;&lt;br&gt;[Container: SQLite Database]&lt;br&gt;&lt;br&gt;&lt;small&gt;Stores nominations, actors, films, awards_editions, categories, news_sources. Accessed via PDO with FK constraints.&lt;/small&gt;"
-          style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;"
-          vertex="1" parent="1">
-          <mxGeometry x="810" y="340" width="210" height="150" as="geometry"/>
+        <mxCell id="p2_sqlite" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;" value="&lt;b&gt;awa.sqlite&lt;/b&gt;&lt;br&gt;[Container: SQLite Database]&lt;br&gt;&lt;br&gt;&lt;small&gt;Stores nominations, actors, films, awards_editions, categories, news_sources. Accessed via PDO with FK constraints.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="150" width="210" x="880" y="180" as="geometry" />
         </mxCell>
-
-        <!-- TMDb External -->
-        <mxCell id="p2_tmdb"
-          value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Actor bios, profile photos, movie details.&lt;/small&gt;"
-          style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="810" y="580" width="210" height="100" as="geometry"/>
+        <mxCell id="p2_tmdb" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Actor bios, profile photos, movie details.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="100" width="210" x="850" y="610" as="geometry" />
         </mxCell>
-
-        <!-- RSS External -->
-        <mxCell id="p2_rss"
-          value="&lt;b&gt;RSS News Feeds&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Configurable news article sources.&lt;/small&gt;"
-          style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="120" y="580" width="210" height="100" as="geometry"/>
+        <mxCell id="p2_rss" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;RSS News Feeds&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Configurable news article sources.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="100" width="210" x="485" y="620" as="geometry" />
         </mxCell>
-
-        <!-- Arrows -->
-        <mxCell id="p2_e1" value="Opens dashboard in browser [HTTP]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p2_user" target="p2_frontend" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p2_e1" edge="1" parent="1" source="p2_user" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p2_frontend" value="Opens dashboard in browser [HTTP]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p2_e2" value="API calls via fetch() [HTTP/JSON]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p2_frontend" target="p2_backend" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p2_e2" edge="1" parent="1" source="p2_frontend" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p2_backend" value="API calls via fetch() [HTTP/JSON]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p2_e3" value="Reads/writes via PDO [SQLite]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p2_backend" target="p2_sqlite" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p2_e3" edge="1" parent="1" source="p2_backend" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p2_sqlite" value="Reads/writes via PDO [SQLite]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p2_e4" value="Reverse proxy requests [HTTPS/JSON]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p2_backend" target="p2_tmdb" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p2_e4" edge="1" parent="1" source="p2_backend" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p2_tmdb" value="Reverse proxy requests [HTTPS/JSON]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p2_e5" value="Fetches news articles [HTTPS/RSS]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p2_backend" target="p2_rss" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p2_e5" edge="1" parent="1" source="p2_backend" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p2_rss" value="Fetches news articles [HTTPS/RSS]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-
-  <!-- ============================================================ -->
-  <!-- PAGE 3: C4 Level 3 — Component (Backend API)               -->
-  <!-- ============================================================ -->
   <diagram name="L3 - Component (Backend)" id="page3">
-    <mxGraphModel pageWidth="1654" pageHeight="1169" grid="1" gridSize="10">
+    <mxGraphModel dx="1928" dy="1431" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-
-        <!-- Title -->
-        <mxCell id="p3_title"
-          value="AwA — C4 Level 3: Component (Backend API)"
-          style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;"
-          vertex="1" parent="1">
-          <mxGeometry x="300" y="20" width="900" height="40" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p3_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=18;fontStyle=1;" value="AwA — C4 Level 3: Component (Backend API)" vertex="1">
+          <mxGeometry height="40" width="900" x="300" y="20" as="geometry" />
         </mxCell>
-
-        <!-- Backend Boundary -->
-        <mxCell id="p3_boundary"
-          value="&lt;b&gt;Backend API&lt;/b&gt; [Container: PHP Built-in Server]"
-          style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0E52A0;fontColor=#0E52A0;dashed=1;dashPattern=8 4;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="60" y="80" width="1100" height="860" as="geometry"/>
+        <mxCell id="p3_boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0E52A0;fontColor=#0E52A0;dashed=1;dashPattern=8 4;verticalAlign=top;fontSize=13;fontStyle=1;spacingTop=5;" value="&lt;b&gt;Backend API&lt;/b&gt; [Container: PHP Built-in Server]" vertex="1">
+          <mxGeometry height="1060" width="1190" x="30" y="80" as="geometry" />
         </mxCell>
-
-        <!-- ── ENTRY POINT ── -->
-        <mxCell id="p3_router"
-          value="&lt;b&gt;router.php&lt;/b&gt;&lt;br&gt;[Component: Front Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Entry point for all HTTP requests. Serves static files directly. Parses URL + HTTP method. Routes to correct controller function.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="430" y="120" width="260" height="130" as="geometry"/>
+        <mxCell id="p3_router" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;router.php&lt;/b&gt;&lt;br&gt;[Component: Front Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Entry point for all HTTP requests. Serves static files directly. Parses URL + HTTP method. Routes to correct controller function.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="260" x="440" y="120" as="geometry" />
         </mxCell>
-
-        <!-- ── HELPERS ROW ── -->
-        <mxCell id="p3_env"
-          value="&lt;b&gt;env.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;Reads .env file once (static cache). Provides env() to safely expose API keys server-side only.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="100" y="320" width="190" height="120" as="geometry"/>
+        <mxCell id="p3_env" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;env.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;Reads .env file once (static cache). Provides env() to safely expose API keys server-side only.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="80" y="50" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_db"
-          value="&lt;b&gt;db.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;Singleton PDO connection to awa.sqlite. Sets FETCH_ASSOC, ERRMODE_EXCEPTION, FK constraints ON.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="320" y="320" width="190" height="120" as="geometry"/>
+        <mxCell id="p3_db" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;db.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;Singleton PDO connection to awa.sqlite. Sets FETCH_ASSOC, ERRMODE_EXCEPTION, FK constraints ON.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="250" y="270" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_response"
-          value="&lt;b&gt;response.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;json_response(), not_found() 404, bad_request() 400, server_error() 500. Sets Content-Type and CORS headers.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="540" y="320" width="190" height="120" as="geometry"/>
+        <mxCell id="p3_response" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;response.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;json_response(), not_found() 404, bad_request() 400, server_error() 500. Sets Content-Type and CORS headers.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="700" y="340" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_validate"
-          value="&lt;b&gt;validate.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;v_int(), v_str(), v_bool01(), v_url_template(), read_json_body(). Input sanitization and SQL injection prevention.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="760" y="320" width="190" height="120" as="geometry"/>
+        <mxCell id="p3_validate" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;validate.php&lt;/b&gt;&lt;br&gt;[Component: Helper]&lt;br&gt;&lt;br&gt;&lt;small&gt;v_int(), v_str(), v_bool01(), v_url_template(), read_json_body(). Input sanitization and SQL injection prevention.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="120" width="190" x="1010" y="340" as="geometry" />
         </mxCell>
-
-        <!-- ── CONTROLLERS ROW 1 ── -->
-        <mxCell id="p3_nominations"
-          value="&lt;b&gt;nominations.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_nominations() with dynamic filtering (year, category, actor_id, film_id, winner). get / create / update / delete nomination.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="100" y="510" width="210" height="130" as="geometry"/>
+        <mxCell id="p3_nominations" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;nominations.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_nominations() with dynamic filtering (year, category, actor_id, film_id, winner). get / create / update / delete nomination.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="100" y="510" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_actors"
-          value="&lt;b&gt;actors.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_actors() with nomination_count and win_count (COUNT + SUM CASE). get_actor() with full nomination history.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="340" y="510" width="210" height="130" as="geometry"/>
+        <mxCell id="p3_actors" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;actors.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_actors() with nomination_count and win_count (COUNT + SUM CASE). get_actor() with full nomination history.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="340" y="510" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_films"
-          value="&lt;b&gt;films.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_films() with nomination_count. get_film() with full nominations list including actor names.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="580" y="510" width="210" height="130" as="geometry"/>
+        <mxCell id="p3_films" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;films.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_films() with nomination_count. get_film() with full nominations list including actor names.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="580" y="510" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_editions"
-          value="&lt;b&gt;editions.php&lt;br&gt;categories.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_editions() and list_categories(). Populate frontend year and category dropdown filters.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="820" y="510" width="210" height="130" as="geometry"/>
+        <mxCell id="p3_editions" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;editions.php&lt;br&gt;categories.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;list_editions() and list_categories(). Populate frontend year and category dropdown filters.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="130" width="210" x="827" y="510" as="geometry" />
         </mxCell>
-
-        <!-- ── CONTROLLERS ROW 2 ── -->
-        <mxCell id="p3_tmdbcomp"
-          value="&lt;b&gt;tmdb.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Reverse proxy to TMDb API. enrich_actor/film() auto-matches by name and caches TMDb ID in DB. API key stays server-side via env().&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="100" y="710" width="220" height="140" as="geometry"/>
+        <mxCell id="p3_tmdbcomp" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;tmdb.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Reverse proxy to TMDb API. enrich_actor/film() auto-matches by name and caches TMDb ID in DB. API key stays server-side via env().&lt;/small&gt;" vertex="1">
+          <mxGeometry height="140" width="220" x="90" y="710" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_newscomp"
-          value="&lt;b&gt;news.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Fetches and parses RSS feeds from configurable news sources. Full CRUD for news_sources table in DB.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="360" y="710" width="220" height="140" as="geometry"/>
+        <mxCell id="p3_newscomp" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;news.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Fetches and parses RSS feeds from configurable news sources. Full CRUD for news_sources table in DB.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="140" width="220" x="335" y="960" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_exportcomp"
-          value="&lt;b&gt;export.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Exports filtered nomination data as CSV, JSON, SVG bar chart, or WebP image. Respects active frontend filters.&lt;/small&gt;"
-          style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="620" y="710" width="220" height="140" as="geometry"/>
+        <mxCell id="p3_exportcomp" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;export.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Exports filtered nomination data as CSV, JSON, SVG bar chart, or WebP image. Respects active frontend filters.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="140" width="220" x="590" y="830" as="geometry" />
         </mxCell>
-
-        <!-- ── EXTERNAL SYSTEMS ── -->
-        <mxCell id="p3_frontendext"
-          value="&lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;[Container: Browser]&lt;br&gt;&lt;br&gt;&lt;small&gt;Sends HTTP requests and receives JSON responses.&lt;/small&gt;"
-          style="rounded=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="1240" y="120" width="200" height="120" as="geometry"/>
+        <mxCell id="p3_importcomp" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;import.php&lt;/b&gt;&lt;br&gt;[Component: Controller]&lt;br&gt;&lt;br&gt;&lt;small&gt;Imports nominations from uploaded CSV or JSON body. Validates each row, auto-creates missing records, skips duplicates silently.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="140" width="220" x="840" y="830" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_sqlite"
-          value="&lt;b&gt;awa.sqlite&lt;/b&gt;&lt;br&gt;[Database]&lt;br&gt;&lt;br&gt;&lt;small&gt;nominations, actors, films, awards_editions, categories, news_sources&lt;/small&gt;"
-          style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;"
-          vertex="1" parent="1">
-          <mxGeometry x="1240" y="380" width="200" height="150" as="geometry"/>
+        <mxCell id="p3_frontendext" parent="1" style="rounded=1;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;Frontend&lt;/b&gt;&lt;br&gt;[Container: Browser]&lt;br&gt;&lt;br&gt;&lt;small&gt;Sends HTTP requests and receives JSON responses.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="120" width="200" x="1260" y="30" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_tmdbext"
-          value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Actor/film data via HTTPS/JSON.&lt;/small&gt;"
-          style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="1240" y="600" width="200" height="100" as="geometry"/>
+        <mxCell id="p3_sqlite" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;" value="&lt;b&gt;awa.sqlite&lt;/b&gt;&lt;br&gt;[Database]&lt;br&gt;&lt;br&gt;&lt;small&gt;nominations, actors, films, awards_editions, categories, news_sources&lt;/small&gt;" vertex="1">
+          <mxGeometry height="150" width="200" x="1260" y="200" as="geometry" />
         </mxCell>
-
-        <mxCell id="p3_rssext"
-          value="&lt;b&gt;RSS Feeds&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;News articles via HTTPS/RSS.&lt;/small&gt;"
-          style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;"
-          vertex="1" parent="1">
-          <mxGeometry x="1240" y="740" width="200" height="100" as="geometry"/>
+        <mxCell id="p3_tmdbext" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Actor/film data via HTTPS/JSON.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="1240" y="600" as="geometry" />
         </mxCell>
-
-        <!-- ── ARROWS ── -->
-        <!-- Frontend → router -->
-        <mxCell id="p3_e1" value="HTTP requests [JSON]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p3_frontendext" target="p3_router" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_rssext" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;RSS Feeds&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;News articles via HTTPS/RSS.&lt;/small&gt;" vertex="1">
+          <mxGeometry height="100" width="200" x="1240" y="740" as="geometry" />
         </mxCell>
-
-        <!-- router → helpers (dashed) -->
-        <mxCell id="p3_e2" value="require_once"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;"
-          edge="1" source="p3_router" target="p3_env" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e1" edge="1" parent="1" source="p3_frontendext" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p3_router" value="HTTP requests [JSON]">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e3" value="require_once"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;"
-          edge="1" source="p3_router" target="p3_db" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e2" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;" target="p3_env" value="require_once">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e4" value="require_once"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;"
-          edge="1" source="p3_router" target="p3_response" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e3" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;" target="p3_db" value="require_once">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e5" value="require_once"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;"
-          edge="1" source="p3_router" target="p3_validate" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e4" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;" target="p3_response" value="require_once">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- router → controllers -->
-        <mxCell id="p3_e6" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_nominations" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e5" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#888888;fontColor=#888888;fontSize=10;dashed=1;dashPattern=6 3;" target="p3_validate" value="require_once">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e7" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_actors" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e6" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_nominations" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e8" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_films" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e7" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_actors" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e9" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_editions" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e8" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_films" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e10" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_tmdbcomp" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e9" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_editions" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e11" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_newscomp" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e10" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_tmdbcomp" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="p3_e12" value="calls"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;"
-          edge="1" source="p3_router" target="p3_exportcomp" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e11" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_newscomp" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- db → sqlite -->
-        <mxCell id="p3_e13" value="PDO [SQLite]"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p3_db" target="p3_sqlite" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e12" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_exportcomp" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- tmdb → tmdbext -->
-        <mxCell id="p3_e14" value="HTTPS/JSON"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p3_tmdbcomp" target="p3_tmdbext" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e16" edge="1" parent="1" source="p3_router" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#666666;fontColor=#666666;fontSize=10;" target="p3_importcomp" value="calls">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- news → rss -->
-        <mxCell id="p3_e15" value="HTTPS/RSS"
-          style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;"
-          edge="1" source="p3_newscomp" target="p3_rssext" parent="1">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="p3_e13" edge="1" parent="1" source="p3_db" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p3_sqlite" value="PDO [SQLite]">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e14" edge="1" parent="1" source="p3_tmdbcomp" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p3_tmdbext" value="HTTPS/JSON">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_e15" edge="1" parent="1" source="p3_newscomp" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#444444;fontColor=#444444;fontSize=10;" target="p3_rssext" value="HTTPS/RSS">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
-
 </mxfile>
