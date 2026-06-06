@@ -48,22 +48,22 @@
         </section>
 
         <section class="metrics" aria-label="Summary metrics">
-            <article>
+            <div>
                 <span>Total nominations</span>
                 <strong id="metric-nominations">0</strong>
-            </article>
-            <article>
+            </div>
+            <div>
                 <span>Winning entries</span>
                 <strong id="metric-winners">0</strong>
-            </article>
-            <article>
+            </div>
+            <div>
                 <span>Actors shown</span>
                 <strong id="metric-actors">0</strong>
-            </article>
-            <article>
+            </div>
+            <div>
                 <span>Films shown</span>
                 <strong id="metric-films">0</strong>
-            </article>
+            </div>
         </section>
 
         <section class="chart-grid" aria-label="Award visualizations">
@@ -90,11 +90,11 @@
             </article>
         </section>
 
-        <section class="content-grid">
+        <div class="content-grid">
             <article class="table-panel">
                 <div class="panel-heading">
                     <h2>Nominations</h2>
-                    <div class="export-actions" aria-label="Export filtered data">
+                    <div class="export-actions" role="group" aria-label="Export filtered data">
                         <button id="export-csv" type="button">CSV</button>
                         <button id="export-json" type="button">JSON</button>
                         <button id="export-svg" type="button">SVG</button>
@@ -127,7 +127,7 @@
                     <p>Choose an actor or film from the nominations table to inspect local SAG history with TMDb enrichment.</p>
                 </div>
             </aside>
-        </section>
+        </div>
 
         <section class="admin-panel" aria-label="Administration module">
             <div class="panel-heading">
@@ -144,7 +144,9 @@
                     </label>
                     <label>
                         Category
-                        <select id="admin-category" required></select>
+                        <select id="admin-category" required>
+                            <option value="">Select category</option>
+                        </select>
                     </label>
                     <label>
                         Actor
@@ -161,7 +163,8 @@
                     <label>
                         Result
                         <select id="admin-winner" required>
-                            <option value="0">Nominee</option>
+                            <option value="" disabled>Choose result</option>
+                            <option value="0" selected>Nominee</option>
                             <option value="1">Winner</option>
                         </select>
                     </label>
@@ -184,7 +187,8 @@
                     <label>
                         Enabled
                         <select id="source-enabled" required>
-                            <option value="1">Enabled</option>
+                            <option value="" disabled>Choose status</option>
+                            <option value="1" selected>Enabled</option>
                             <option value="0">Disabled</option>
                         </select>
                     </label>

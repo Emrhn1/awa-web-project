@@ -106,7 +106,7 @@ function setupFilters() {
 
     els.yearFilter.innerHTML = '<option value="">All years</option>';
     els.categoryFilter.innerHTML = '<option value="">All categories</option>';
-    els.adminCategory.innerHTML = '';
+    els.adminCategory.innerHTML = '<option value="">Select category</option>';
     fillSelect(els.yearFilter, years);
     fillSelect(els.categoryFilter, categories);
     fillSelect(els.adminCategory, categories);
