@@ -176,7 +176,7 @@ select {
     overflow: hidden;
 }
 
-.metrics article {
+.metrics > div {
     background: var(--surface);
     padding: 1rem;
 }
@@ -658,7 +658,7 @@ td button:focus-visible {
         grid-column: auto;
     }
 
-    .metrics article {
+    .metrics > div {
         padding: 0.85rem;
     }
 
