@@ -17,12 +17,16 @@ cp .env.example .env
 # Open .env and set TMDB_API_KEY=your_key_here
 # (Get a free key at https://www.themoviedb.org/settings/api)
 
-# 2. Build the database and load seed data
+# 2. Build an empty database
 php backend/database/migrate.php
 
 # 3. Start the PHP built-in server
 php -S localhost:8000 -t backend/public backend/public/router.php
 ```
+
+The app starts without nominations. To load the sample SAG data, use the
+Administration import controls and choose either `backend/database/seed.csv` or
+`backend/database/seed.json`.
 
 ## Quick Test
 
@@ -49,7 +53,7 @@ awa-web-project/
 ├── backend/
 │   ├── public/        # router.php (entry point)
 │   ├── src/           # db.php, env.php, response.php, validate.php, controllers/
-│   └── database/      # schema.sql, seed.php, migrate.php, awa.sqlite
+│   └── database/      # schema.sql, seed.csv, seed.json, migrate.php, awa.sqlite
 ├── frontend/          # index.html, css/main.css, js/main.js
 └── docs/              # architecture.md, api.md, data-model.md
 ```

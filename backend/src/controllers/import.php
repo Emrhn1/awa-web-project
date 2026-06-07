@@ -11,7 +11,7 @@ function import_csv(): void {
     fwrite($tmp, $raw);
     rewind($tmp);
 
-    $headers = fgetcsv($tmp);
+    $headers = fgetcsv($tmp, null, ',', '"', '\\');
     if (!$headers) {
         fclose($tmp);
         bad_request('Could not parse CSV headers');
@@ -33,7 +33,7 @@ function import_csv(): void {
     $errors   = [];
     $lineNum  = 1;
 
-    while (($values = fgetcsv($tmp)) !== false) {
+    while (($values = fgetcsv($tmp, null, ',', '"', '\\')) !== false) {
         $lineNum++;
         if (count($values) < count($headers)) {
             continue;

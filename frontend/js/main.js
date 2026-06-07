@@ -922,6 +922,9 @@ function downloadBlob(blob, filename) {
 function serializeChartSvg(svg) {
     const clone = svg.cloneNode(true);
     clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    const size = chartSvgSize(svg);
+    clone.setAttribute('width', String(size.width));
+    clone.setAttribute('height', String(size.height));
 
     const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
     style.textContent = `
@@ -933,6 +936,31 @@ function serializeChartSvg(svg) {
     clone.insertBefore(style, clone.firstChild);
 
     return new XMLSerializer().serializeToString(clone);
+}
+
+function chartSvgSize(svg) {
+    const viewBox = svg.getAttribute('viewBox');
+    if (viewBox) {
+        const [, , width, height] = viewBox.split(/\s+/).map(Number);
+        if (width > 0 && height > 0) {
+            return { width, height };
+        }
+    }
+
+    const rect = svg.getBoundingClientRect();
+    return {
+        width: Math.max(1, Math.round(rect.width || 960)),
+        height: Math.max(1, Math.round(rect.height || 540)),
+    };
+}
+
+function chartCanvasSize(svg) {
+    const size = chartSvgSize(svg);
+    const scale = Math.min(2, 1200 / Math.max(size.width, size.height));
+    return {
+        width: Math.round(size.width * scale),
+        height: Math.round(size.height * scale),
+    };
 }
 
 function chartCsvRows(type) {
@@ -1003,8 +1031,9 @@ function exportChartWebp(type) {
 
     img.onload = () => {
         const canvas = document.createElement('canvas');
-        canvas.width = 960;
-        canvas.height = 540;
+        const size = chartCanvasSize(svg);
+        canvas.width = size.width;
+        canvas.height = size.height;
         const ctx = canvas.getContext('2d');
         ctx.fillStyle = '#f4f1ea';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
