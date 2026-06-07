@@ -199,6 +199,26 @@
                     <div id="source-list" class="source-list"></div>
                 </form>
             </div>
+
+            <div class="import-section">
+                <h3>Import Nominations</h3>
+                <p class="import-hint">Upload a CSV or JSON file with the same columns as the export. Existing records are skipped.</p>
+                <div class="import-row">
+                    <label class="import-label">
+                        CSV file
+                        <input id="import-csv-file" type="file" accept=".csv,text/csv">
+                    </label>
+                    <button id="import-csv-btn" type="button">Import CSV</button>
+                </div>
+                <div class="import-row">
+                    <label class="import-label">
+                        JSON file
+                        <input id="import-json-file" type="file" accept=".json,application/json">
+                    </label>
+                    <button id="import-json-btn" type="button">Import JSON</button>
+                </div>
+                <p id="import-result" class="import-result" aria-live="polite"></p>
+            </div>
         </section>
     </main>
 

@@ -53,3 +53,4 @@ awa-web-project/
 ├── frontend/          # index.html, css/main.css, js/main.js
 └── docs/              # architecture.md, api.md, data-model.md
 ```
+https://feeds.bbci.co.uk/news/rss.xml?q={query}

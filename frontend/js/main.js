@@ -51,6 +51,11 @@ const els = {
     sourceEnabled: document.getElementById('source-enabled'),
     clearSource: document.getElementById('clear-source'),
     sourceList: document.getElementById('source-list'),
+    importCsvFile: document.getElementById('import-csv-file'),
+    importCsvBtn: document.getElementById('import-csv-btn'),
+    importJsonFile: document.getElementById('import-json-file'),
+    importJsonBtn: document.getElementById('import-json-btn'),
+    importResult: document.getElementById('import-result'),
 };
 
 function setApiState(kind, message) {
@@ -807,6 +812,48 @@ function setupAdmin() {
     els.clearNomination.addEventListener('click', clearNominationForm);
     els.sourceForm.addEventListener('submit', saveSource);
     els.clearSource.addEventListener('click', clearSourceForm);
+    els.importCsvBtn.addEventListener('click', () => importFile('csv'));
+    els.importJsonBtn.addEventListener('click', () => importFile('json'));
+}
+
+async function importFile(format) {
+    const fileInput = format === 'csv' ? els.importCsvFile : els.importJsonFile;
+    const file = fileInput.files[0];
+    if (!file) {
+        els.importResult.textContent = 'Please select a file first.';
+        els.importResult.style.color = 'var(--accent-dark)';
+        return;
+    }
+
+    els.importResult.textContent = 'Importing…';
+    els.importResult.style.color = 'var(--muted)';
+
+    try {
+        const text = await file.text();
+        const contentType = format === 'csv' ? 'text/csv' : 'application/json';
+        const res = await fetch(`${API_BASE}/import/${format}`, {
+            method: 'POST',
+            headers: { 'Content-Type': contentType },
+            body: text,
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+            throw new Error(data.error || `Import failed (HTTP ${res.status})`);
+        }
+
+        let msg = `Imported ${data.imported} record(s)`;
+        if (data.skipped) msg += `, ${data.skipped} duplicate(s) skipped`;
+        if (data.errors && data.errors.length) msg += `, ${data.errors.length} row error(s)`;
+        els.importResult.textContent = msg;
+        els.importResult.style.color = (data.errors && data.errors.length)
+            ? 'var(--accent-dark)' : 'var(--green)';
+
+        fileInput.value = '';
+        await reloadCoreData();
+    } catch (err) {
+        els.importResult.textContent = err.message;
+        els.importResult.style.color = 'var(--accent-dark)';
+    }
 }
 
 async function reloadCoreData() {
