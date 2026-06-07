@@ -32,8 +32,7 @@ const els = {
     detailState: document.getElementById('detail-state'),
     exportCsv: document.getElementById('export-csv'),
     exportJson: document.getElementById('export-json'),
-    exportSvg: document.getElementById('export-svg'),
-    exportWebp: document.getElementById('export-webp'),
+    chartExportButtons: document.querySelectorAll('[data-chart-export]'),
     adminState: document.getElementById('admin-state'),
     nominationForm: document.getElementById('nomination-form'),
     nominationId: document.getElementById('nomination-id'),
@@ -886,14 +885,118 @@ function exportFromApi(format) {
     window.location.href = `${API_BASE}/export/${format}${currentExportQuery()}`;
 }
 
-function exportVisibleChartWebp() {
-    const svg = els.yearChart.querySelector('svg');
+function chartInfo(type) {
+    const charts = {
+        year: {
+            container: els.yearChart,
+            filename: 'awa-nominations-by-year',
+        },
+        category: {
+            container: els.categoryChart,
+            filename: 'awa-category-trends',
+        },
+        winner: {
+            container: els.winnerChart,
+            filename: 'awa-winner-ratio',
+        },
+    };
+    return charts[type] || null;
+}
+
+function csvEscape(value) {
+    const text = String(value ?? '');
+    return /[",\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+}
+
+function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+}
+
+function serializeChartSvg(svg) {
+    const clone = svg.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+    const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    style.textContent = `
+        text { fill: #6f665c; font-size: 12px; }
+        .axis { stroke: #ddd3c3; stroke-width: 1; }
+        .bar { fill: #b33f31; }
+        .line { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+    `;
+    clone.insertBefore(style, clone.firstChild);
+
+    return new XMLSerializer().serializeToString(clone);
+}
+
+function chartCsvRows(type) {
+    if (type === 'year') {
+        const counts = countBy(state.filtered, 'year');
+        const years = Object.keys(counts).map(Number).sort((a, b) => a - b);
+        return [
+            ['Year', 'Nominations'],
+            ...years.map((year) => [year, counts[year]]),
+        ];
+    }
+
+    if (type === 'category') {
+        const years = uniqueValues(state.nominations, 'year').map(Number).sort((a, b) => a - b);
+        const categories = uniqueValues(state.filtered, 'category').sort();
+        const rows = [['Year', 'Category', 'Nominations']];
+        for (const category of categories) {
+            for (const year of years) {
+                const count = state.filtered.filter((item) => Number(item.year) === year && item.category === category).length;
+                rows.push([year, category, count]);
+            }
+        }
+        return rows;
+    }
+
+    if (type === 'winner') {
+        const winners = state.filtered.filter((item) => Number(item.is_winner) === 1).length;
+        return [
+            ['Result', 'Count'],
+            ['Winner', winners],
+            ['Nominee', state.filtered.length - winners],
+        ];
+    }
+
+    return [];
+}
+
+function exportChartCsv(type) {
+    const info = chartInfo(type);
+    if (!info) return;
+    const rows = chartCsvRows(type);
+    const csv = rows.map((row) => row.map(csvEscape).join(',')).join('\n');
+    downloadBlob(new Blob([csv], { type: 'text/csv;charset=utf-8' }), `${info.filename}.csv`);
+}
+
+function exportChartSvg(type) {
+    const info = chartInfo(type);
+    if (!info) return;
+    const svg = info.container.querySelector('svg');
+    if (!svg) return;
+
+    const source = serializeChartSvg(svg);
+    downloadBlob(new Blob([source], { type: 'image/svg+xml;charset=utf-8' }), `${info.filename}.svg`);
+}
+
+function exportChartWebp(type) {
+    const info = chartInfo(type);
+    if (!info) return;
+    const svg = info.container.querySelector('svg');
     if (!svg) {
-        exportFromApi('webp');
         return;
     }
 
-    const source = new XMLSerializer().serializeToString(svg);
+    const source = serializeChartSvg(svg);
     const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const img = new Image();
@@ -909,22 +1012,25 @@ function exportVisibleChartWebp() {
         URL.revokeObjectURL(url);
         canvas.toBlob((webpBlob) => {
             if (!webpBlob) {
-                exportFromApi('webp');
                 return;
             }
-            const downloadUrl = URL.createObjectURL(webpBlob);
-            const a = document.createElement('a');
-            a.href = downloadUrl;
-            a.download = 'awa-nominations.webp';
-            a.click();
-            URL.revokeObjectURL(downloadUrl);
+            downloadBlob(webpBlob, `${info.filename}.webp`);
         }, 'image/webp', 0.9);
     };
     img.onerror = () => {
         URL.revokeObjectURL(url);
-        exportFromApi('webp');
     };
     img.src = url;
+}
+
+function exportChart(type, format) {
+    if (format === 'csv') {
+        exportChartCsv(type);
+    } else if (format === 'svg') {
+        exportChartSvg(type);
+    } else if (format === 'webp') {
+        exportChartWebp(type);
+    }
 }
 
 async function init() {
@@ -962,7 +1068,8 @@ async function init() {
 
 els.exportCsv.addEventListener('click', () => exportFromApi('csv'));
 els.exportJson.addEventListener('click', () => exportFromApi('json'));
-els.exportSvg.addEventListener('click', () => exportFromApi('svg'));
-els.exportWebp.addEventListener('click', exportVisibleChartWebp);
+for (const button of els.chartExportButtons) {
+    button.addEventListener('click', () => exportChart(button.dataset.chartExport, button.dataset.exportFormat));
+}
 
 init();
