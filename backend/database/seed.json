@@ -1,0 +1,962 @@
+[
+    {
+        "year": 2021,
+        "category": "Best Actor",
+        "actor": "Chadwick Boseman",
+        "film": "Ma Rainey's Black Bottom",
+        "film_year": 2020,
+        "is_winner": 1
+    },
+    {
+        "year": 2021,
+        "category": "Best Actor",
+        "actor": "Riz Ahmed",
+        "film": "Sound of Metal",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actor",
+        "actor": "Anthony Hopkins",
+        "film": "The Father",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actor",
+        "actor": "Gary Oldman",
+        "film": "Mank",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actor",
+        "actor": "Steven Yeun",
+        "film": "Minari",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actress",
+        "actor": "Viola Davis",
+        "film": "Ma Rainey's Black Bottom",
+        "film_year": 2020,
+        "is_winner": 1
+    },
+    {
+        "year": 2021,
+        "category": "Best Actress",
+        "actor": "Amy Adams",
+        "film": "Hillbilly Elegy",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actress",
+        "actor": "Vanessa Kirby",
+        "film": "Pieces of a Woman",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actress",
+        "actor": "Frances McDormand",
+        "film": "Nomadland",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Actress",
+        "actor": "Carey Mulligan",
+        "film": "Promising Young Woman",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actor",
+        "actor": "Daniel Kaluuya",
+        "film": "Judas and the Black Messiah",
+        "film_year": 2021,
+        "is_winner": 1
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actor",
+        "actor": "Sacha Baron Cohen",
+        "film": "The Trial of the Chicago 7",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actor",
+        "actor": "Jared Leto",
+        "film": "The Little Things",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actor",
+        "actor": "Leslie Odom Jr.",
+        "film": "One Night in Miami",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actor",
+        "actor": "Paul Raci",
+        "film": "Sound of Metal",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actress",
+        "actor": "Yuh-Jung Youn",
+        "film": "Minari",
+        "film_year": 2020,
+        "is_winner": 1
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actress",
+        "actor": "Maria Bakalova",
+        "film": "Borat Subsequent Moviefilm",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actress",
+        "actor": "Glenn Close",
+        "film": "Hillbilly Elegy",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actress",
+        "actor": "Olivia Colman",
+        "film": "The Father",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2021,
+        "category": "Best Supporting Actress",
+        "actor": "Helena Zengel",
+        "film": "News of the World",
+        "film_year": 2020,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actor",
+        "actor": "Will Smith",
+        "film": "King Richard",
+        "film_year": 2021,
+        "is_winner": 1
+    },
+    {
+        "year": 2022,
+        "category": "Best Actor",
+        "actor": "Javier Bardem",
+        "film": "Being the Ricardos",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actor",
+        "actor": "Benedict Cumberbatch",
+        "film": "The Power of the Dog",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actor",
+        "actor": "Andrew Garfield",
+        "film": "Tick, Tick... Boom!",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actor",
+        "actor": "Denzel Washington",
+        "film": "The Tragedy of Macbeth",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actress",
+        "actor": "Jessica Chastain",
+        "film": "The Eyes of Tammy Faye",
+        "film_year": 2021,
+        "is_winner": 1
+    },
+    {
+        "year": 2022,
+        "category": "Best Actress",
+        "actor": "Olivia Colman",
+        "film": "The Lost Daughter",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actress",
+        "actor": "Lady Gaga",
+        "film": "House of Gucci",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actress",
+        "actor": "Jennifer Hudson",
+        "film": "Respect",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Actress",
+        "actor": "Nicole Kidman",
+        "film": "Being the Ricardos",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actor",
+        "actor": "Troy Kotsur",
+        "film": "CODA",
+        "film_year": 2021,
+        "is_winner": 1
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actor",
+        "actor": "Ben Affleck",
+        "film": "The Tender Bar",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actor",
+        "actor": "Bradley Cooper",
+        "film": "Licorice Pizza",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actor",
+        "actor": "Jared Leto",
+        "film": "House of Gucci",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actor",
+        "actor": "Kodi Smit-McPhee",
+        "film": "The Power of the Dog",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actress",
+        "actor": "Ariana DeBose",
+        "film": "West Side Story",
+        "film_year": 2021,
+        "is_winner": 1
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actress",
+        "actor": "Caitriona Balfe",
+        "film": "Belfast",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actress",
+        "actor": "Cate Blanchett",
+        "film": "Nightmare Alley",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actress",
+        "actor": "Kirsten Dunst",
+        "film": "The Power of the Dog",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2022,
+        "category": "Best Supporting Actress",
+        "actor": "Ruth Negga",
+        "film": "Passing",
+        "film_year": 2021,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actor",
+        "actor": "Brendan Fraser",
+        "film": "The Whale",
+        "film_year": 2022,
+        "is_winner": 1
+    },
+    {
+        "year": 2023,
+        "category": "Best Actor",
+        "actor": "Austin Butler",
+        "film": "Elvis",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actor",
+        "actor": "Colin Farrell",
+        "film": "The Banshees of Inisherin",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actor",
+        "actor": "Bill Nighy",
+        "film": "Living",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actor",
+        "actor": "Adam Sandler",
+        "film": "Hustle",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actress",
+        "actor": "Michelle Yeoh",
+        "film": "Everything Everywhere All at Once",
+        "film_year": 2022,
+        "is_winner": 1
+    },
+    {
+        "year": 2023,
+        "category": "Best Actress",
+        "actor": "Cate Blanchett",
+        "film": "Tar",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actress",
+        "actor": "Viola Davis",
+        "film": "The Woman King",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actress",
+        "actor": "Ana de Armas",
+        "film": "Blonde",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Actress",
+        "actor": "Danielle Deadwyler",
+        "film": "Till",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actor",
+        "actor": "Ke Huy Quan",
+        "film": "Everything Everywhere All at Once",
+        "film_year": 2022,
+        "is_winner": 1
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actor",
+        "actor": "Paul Dano",
+        "film": "The Fabelmans",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actor",
+        "actor": "Brendan Gleeson",
+        "film": "The Banshees of Inisherin",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actor",
+        "actor": "Barry Keoghan",
+        "film": "The Banshees of Inisherin",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actor",
+        "actor": "Eddie Redmayne",
+        "film": "The Good Nurse",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actress",
+        "actor": "Jamie Lee Curtis",
+        "film": "Everything Everywhere All at Once",
+        "film_year": 2022,
+        "is_winner": 1
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actress",
+        "actor": "Angela Bassett",
+        "film": "Black Panther: Wakanda Forever",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actress",
+        "actor": "Hong Chau",
+        "film": "The Whale",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actress",
+        "actor": "Kerry Condon",
+        "film": "The Banshees of Inisherin",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2023,
+        "category": "Best Supporting Actress",
+        "actor": "Stephanie Hsu",
+        "film": "Everything Everywhere All at Once",
+        "film_year": 2022,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actor",
+        "actor": "Cillian Murphy",
+        "film": "Oppenheimer",
+        "film_year": 2023,
+        "is_winner": 1
+    },
+    {
+        "year": 2024,
+        "category": "Best Actor",
+        "actor": "Bradley Cooper",
+        "film": "Maestro",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actor",
+        "actor": "Colman Domingo",
+        "film": "Rustin",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actor",
+        "actor": "Paul Giamatti",
+        "film": "The Holdovers",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actor",
+        "actor": "Jeffrey Wright",
+        "film": "American Fiction",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actress",
+        "actor": "Lily Gladstone",
+        "film": "Killers of the Flower Moon",
+        "film_year": 2023,
+        "is_winner": 1
+    },
+    {
+        "year": 2024,
+        "category": "Best Actress",
+        "actor": "Annette Bening",
+        "film": "Nyad",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actress",
+        "actor": "Carey Mulligan",
+        "film": "Maestro",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actress",
+        "actor": "Margot Robbie",
+        "film": "Barbie",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Actress",
+        "actor": "Emma Stone",
+        "film": "Poor Things",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actor",
+        "actor": "Robert Downey Jr.",
+        "film": "Oppenheimer",
+        "film_year": 2023,
+        "is_winner": 1
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actor",
+        "actor": "Sterling K. Brown",
+        "film": "American Fiction",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actor",
+        "actor": "Willem Dafoe",
+        "film": "Poor Things",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actor",
+        "actor": "Robert De Niro",
+        "film": "Killers of the Flower Moon",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actor",
+        "actor": "Ryan Gosling",
+        "film": "Barbie",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actress",
+        "actor": "Da'Vine Joy Randolph",
+        "film": "The Holdovers",
+        "film_year": 2023,
+        "is_winner": 1
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actress",
+        "actor": "Emily Blunt",
+        "film": "Oppenheimer",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actress",
+        "actor": "Danielle Brooks",
+        "film": "The Color Purple",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actress",
+        "actor": "Penelope Cruz",
+        "film": "Ferrari",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2024,
+        "category": "Best Supporting Actress",
+        "actor": "Jodie Foster",
+        "film": "Nyad",
+        "film_year": 2023,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actor",
+        "actor": "Timothee Chalamet",
+        "film": "A Complete Unknown",
+        "film_year": 2024,
+        "is_winner": 1
+    },
+    {
+        "year": 2025,
+        "category": "Best Actor",
+        "actor": "Adrien Brody",
+        "film": "The Brutalist",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actor",
+        "actor": "Daniel Craig",
+        "film": "Queer",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actor",
+        "actor": "Colman Domingo",
+        "film": "Sing Sing",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actor",
+        "actor": "Ralph Fiennes",
+        "film": "Conclave",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actress",
+        "actor": "Demi Moore",
+        "film": "The Substance",
+        "film_year": 2024,
+        "is_winner": 1
+    },
+    {
+        "year": 2025,
+        "category": "Best Actress",
+        "actor": "Pamela Anderson",
+        "film": "The Last Showgirl",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actress",
+        "actor": "Cynthia Erivo",
+        "film": "Wicked",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actress",
+        "actor": "Karla Sofia Gascon",
+        "film": "Emilia Perez",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Actress",
+        "actor": "Mikey Madison",
+        "film": "Anora",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actor",
+        "actor": "Kieran Culkin",
+        "film": "A Real Pain",
+        "film_year": 2024,
+        "is_winner": 1
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actor",
+        "actor": "Yura Borisov",
+        "film": "Anora",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actor",
+        "actor": "Jonathan Bailey",
+        "film": "Wicked",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actor",
+        "actor": "Edward Norton",
+        "film": "A Complete Unknown",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actor",
+        "actor": "Jeremy Strong",
+        "film": "The Apprentice",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actress",
+        "actor": "Zoe Saldana",
+        "film": "Emilia Perez",
+        "film_year": 2024,
+        "is_winner": 1
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actress",
+        "actor": "Monica Barbaro",
+        "film": "A Complete Unknown",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actress",
+        "actor": "Jamie Lee Curtis",
+        "film": "The Last Showgirl",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actress",
+        "actor": "Danielle Deadwyler",
+        "film": "The Piano Lesson",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2025,
+        "category": "Best Supporting Actress",
+        "actor": "Ariana Grande",
+        "film": "Wicked",
+        "film_year": 2024,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actor",
+        "actor": "Michael B. Jordan",
+        "film": "Sinners",
+        "film_year": 2025,
+        "is_winner": 1
+    },
+    {
+        "year": 2026,
+        "category": "Best Actor",
+        "actor": "Timothee Chalamet",
+        "film": "Marty Supreme",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actor",
+        "actor": "Leonardo DiCaprio",
+        "film": "One Battle After Another",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actor",
+        "actor": "Ethan Hawke",
+        "film": "Blue Moon",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actor",
+        "actor": "Jesse Plemons",
+        "film": "Bugonia",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actress",
+        "actor": "Jessie Buckley",
+        "film": "Hamnet",
+        "film_year": 2025,
+        "is_winner": 1
+    },
+    {
+        "year": 2026,
+        "category": "Best Actress",
+        "actor": "Rose Byrne",
+        "film": "If I Had Legs I'd Kick You",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actress",
+        "actor": "Kate Hudson",
+        "film": "Song Sung Blue",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actress",
+        "actor": "Chase Infiniti",
+        "film": "One Battle After Another",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Actress",
+        "actor": "Emma Stone",
+        "film": "Bugonia",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actor",
+        "actor": "Sean Penn",
+        "film": "One Battle After Another",
+        "film_year": 2025,
+        "is_winner": 1
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actor",
+        "actor": "Miles Caton",
+        "film": "Sinners",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actor",
+        "actor": "Benicio Del Toro",
+        "film": "One Battle After Another",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actor",
+        "actor": "Jacob Elordi",
+        "film": "Frankenstein",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actor",
+        "actor": "Paul Mescal",
+        "film": "Hamnet",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actress",
+        "actor": "Amy Madigan",
+        "film": "Weapons",
+        "film_year": 2025,
+        "is_winner": 1
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actress",
+        "actor": "Odessa A'zion",
+        "film": "Marty Supreme",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actress",
+        "actor": "Ariana Grande",
+        "film": "Wicked: For Good",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actress",
+        "actor": "Wunmi Mosaku",
+        "film": "Sinners",
+        "film_year": 2025,
+        "is_winner": 0
+    },
+    {
+        "year": 2026,
+        "category": "Best Supporting Actress",
+        "actor": "Teyana Taylor",
+        "film": "One Battle After Another",
+        "film_year": 2025,
+        "is_winner": 0
+    }
+]
