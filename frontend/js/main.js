@@ -331,7 +331,7 @@ function renderWinnerChart() {
     const winners = state.filtered.filter((item) => Number(item.is_winner) === 1).length;
     const nominees = state.filtered.length - winners;
     const total = winners + nominees;
-    const winnerAngle = total ? (winners / total) * 360 : 0;
+    const winnerAngle = Math.max(Math.min(total ? (winners / total) * 360 : 0, 359.999), 0.001);
     const width = 300;
     const height = 250;
     const cx = 92;
@@ -691,7 +691,7 @@ function clearNominationForm() {
     els.nominationId.value = '';
     els.nominationForm.reset();
     els.adminWinner.value = '0';
-    els.adminState.textContent = 'Manage nominations and news sources';
+    els.adminState.textContent = els.sourceId.value ? `Editing news source #${els.sourceId.value}` : 'Manage nominations and news sources';
 }
 
 async function saveNomination(event) {
@@ -708,8 +708,8 @@ async function saveNomination(event) {
 
     try {
         await apiSend(id ? `/nominations/${id}` : '/nominations', id ? 'PUT' : 'POST', payload);
-        els.adminState.textContent = id ? 'Nomination updated' : 'Nomination created';
         clearNominationForm();
+        els.adminState.textContent = id ? 'Nomination updated' : 'Nomination created';
         await reloadCoreData();
     } catch (err) {
         els.adminState.textContent = err.message;
@@ -773,6 +773,7 @@ function clearSourceForm() {
     els.sourceId.value = '';
     els.sourceForm.reset();
     els.sourceEnabled.value = '1';
+    els.adminState.textContent = els.nominationId.value ? `Editing nomination #${els.nominationId.value}` : 'Manage nominations and news sources';
 }
 
 async function saveSource(event) {
@@ -786,8 +787,8 @@ async function saveSource(event) {
 
     try {
         await apiSend(id ? `/news-sources/${id}` : '/news-sources', id ? 'PUT' : 'POST', payload);
-        els.adminState.textContent = id ? 'News source updated' : 'News source created';
         clearSourceForm();
+        els.adminState.textContent = id ? 'News source updated' : 'News source created';
         state.newsSources = await apiGet('/news-sources');
         renderNewsSources();
     } catch (err) {
