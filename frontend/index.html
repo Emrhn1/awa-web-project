@@ -73,6 +73,11 @@
                     <span>Bar chart</span>
                 </div>
                 <div id="year-chart" class="chart" role="img" aria-label="Bar chart of nominations by year"></div>
+                <div class="export-actions chart-export-actions" role="group" aria-label="Export nominations by year chart">
+                    <button type="button" data-chart-export="year" data-export-format="csv">CSV</button>
+                    <button type="button" data-chart-export="year" data-export-format="svg">SVG</button>
+                    <button type="button" data-chart-export="year" data-export-format="webp">WebP</button>
+                </div>
             </article>
             <article class="chart-panel">
                 <div class="panel-heading">
@@ -80,6 +85,11 @@
                     <span>Line chart</span>
                 </div>
                 <div id="category-chart" class="chart" role="img" aria-label="Line chart of category trends"></div>
+                <div class="export-actions chart-export-actions" role="group" aria-label="Export category trends chart">
+                    <button type="button" data-chart-export="category" data-export-format="csv">CSV</button>
+                    <button type="button" data-chart-export="category" data-export-format="svg">SVG</button>
+                    <button type="button" data-chart-export="category" data-export-format="webp">WebP</button>
+                </div>
             </article>
             <article class="chart-panel">
                 <div class="panel-heading">
@@ -87,6 +97,11 @@
                     <span>Pie chart</span>
                 </div>
                 <div id="winner-chart" class="chart chart-small" role="img" aria-label="Pie chart of winners and nominees"></div>
+                <div class="export-actions chart-export-actions" role="group" aria-label="Export winner ratio chart">
+                    <button type="button" data-chart-export="winner" data-export-format="csv">CSV</button>
+                    <button type="button" data-chart-export="winner" data-export-format="svg">SVG</button>
+                    <button type="button" data-chart-export="winner" data-export-format="webp">WebP</button>
+                </div>
             </article>
         </section>
 
@@ -97,8 +112,6 @@
                     <div class="export-actions" role="group" aria-label="Export filtered data">
                         <button id="export-csv" type="button">CSV</button>
                         <button id="export-json" type="button">JSON</button>
-                        <button id="export-svg" type="button">SVG</button>
-                        <button id="export-webp" type="button">WebP</button>
                     </div>
                 </div>
                 <div class="table-wrap">
