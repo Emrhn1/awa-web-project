@@ -1,5 +1,4 @@
 <?php
-// Single PDO instance, lazily created on first call.
 
 if (!function_exists('env') && file_exists(__DIR__ . '/env.php')) {
     require_once __DIR__ . '/env.php';

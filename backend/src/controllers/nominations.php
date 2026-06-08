@@ -84,7 +84,6 @@ function get_nomination(int $id): void {
     json_response($row);
 }
 
-// Resolve year -> edition_id, creating the edition if missing.
 function _edition_id_for_year(int $year): int {
     $pdo = db();
     $stmt = $pdo->prepare('SELECT id FROM awards_editions WHERE year = ?');

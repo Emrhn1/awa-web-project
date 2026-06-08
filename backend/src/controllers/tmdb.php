@@ -1,5 +1,4 @@
 <?php
-// TMDb proxy and enrichment helpers. API key stays server-side, read from .env.
 
 function _tmdb_request(string $path): array {
     $key = env('TMDB_API_KEY');
@@ -64,40 +63,6 @@ function _tmdb_request(string $path): array {
     }
 
     return [$data, (int)$code, null];
-}
-
-function _tmdb_call(string $path): void {
-    [$data, $code, $error] = _tmdb_request($path);
-    if ($error !== null) {
-        server_error($error);
-        return;
-    }
-    if ($code >= 400) {
-        json_response($data, (int)$code);
-        return;
-    }
-    json_response($data);
-}
-
-function tmdb_actor(int $id): void {
-    _tmdb_call("/person/{$id}");
-}
-
-function tmdb_movie(int $id): void {
-    _tmdb_call("/movie/{$id}");
-}
-
-// Bonus: name-based search (useful for matching seed data → TMDb ids).
-function tmdb_search_actor(): void {
-    $q = v_str($_GET['q'] ?? null);
-    if ($q === null) { bad_request('q parameter required'); return; }
-    _tmdb_call('/search/person?query=' . urlencode($q));
-}
-
-function tmdb_search_movie(): void {
-    $q = v_str($_GET['q'] ?? null);
-    if ($q === null) { bad_request('q parameter required'); return; }
-    _tmdb_call('/search/movie?query=' . urlencode($q));
 }
 
 function _tmdb_best_result(array $results): ?array {

@@ -38,7 +38,7 @@ Open in your browser or via curl:
 - http://localhost:8000/api/nominations/1
 - http://localhost:8000/api/actors
 - http://localhost:8000/api/awards-editions
-- http://localhost:8000/api/tmdb/search/actor?q=cillian+murphy *(requires TMDb key)*
+- http://localhost:8000/api/enrich/actor/1 *(requires TMDb key and imported data)*
 
 ## Running the Frontend
 

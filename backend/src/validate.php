@@ -1,5 +1,4 @@
 <?php
-// Tiny validation helpers. Each returns the cleaned value or null if invalid.
 
 function v_int($value): ?int {
     if ($value === null || $value === '') return null;

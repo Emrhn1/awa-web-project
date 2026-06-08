@@ -9,7 +9,6 @@ function env(string $key, ?string $default = null): ?string {
         if (file_exists($path)) {
             $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($lines as $i => $line) {
-                // Strip UTF-8 BOM on first line (added by Notepad/some editors)
                 if ($i === 0) $line = ltrim($line, "\xEF\xBB\xBF");
                 $line = trim($line);
                 if ($line === '' || $line[0] === '#') continue;
