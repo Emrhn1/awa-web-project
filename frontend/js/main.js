@@ -104,7 +104,10 @@ function fillSelect(select, values, formatter = (value) => value) {
     }
 }
 
-function setupFilters() {
+function refreshFilterOptions() {
+    const selectedYear = els.yearFilter.value;
+    const selectedCategory = els.categoryFilter.value;
+    const selectedAdminCategory = els.adminCategory.value;
     const years = uniqueValues(state.nominations, 'year').sort((a, b) => b - a);
     const categories = uniqueValues(state.nominations, 'category').sort();
 
@@ -114,6 +117,14 @@ function setupFilters() {
     fillSelect(els.yearFilter, years);
     fillSelect(els.categoryFilter, categories);
     fillSelect(els.adminCategory, categories);
+
+    els.yearFilter.value = years.some((year) => String(year) === selectedYear) ? selectedYear : '';
+    els.categoryFilter.value = categories.includes(selectedCategory) ? selectedCategory : '';
+    els.adminCategory.value = categories.includes(selectedAdminCategory) ? selectedAdminCategory : '';
+}
+
+function setupFilters() {
+    refreshFilterOptions();
 
     for (const input of [els.yearFilter, els.categoryFilter, els.winnerFilter, els.searchFilter]) {
         input.addEventListener('input', renderDashboard);
@@ -868,6 +879,7 @@ async function reloadCoreData() {
     state.actors = actors;
     state.categories = categories;
     state.editions = editions;
+    refreshFilterOptions();
     renderDashboard();
 }
 
