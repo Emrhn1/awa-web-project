@@ -41,7 +41,6 @@ function list_nominations(): void {
             n.id,
             n.is_winner,
             e.year,
-            e.ceremony_no,
             c.name  AS category,
             a.id    AS actor_id,
             a.name  AS actor,
@@ -66,7 +65,7 @@ function get_nomination(int $id): void {
     $sql = "
         SELECT
             n.id, n.is_winner,
-            e.year, e.ceremony_no,
+            e.year,
             c.name  AS category,
             a.id    AS actor_id, a.name AS actor,
             f.id    AS film_id,  f.title AS film, f.year AS film_year

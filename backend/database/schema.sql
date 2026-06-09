@@ -4,8 +4,6 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS awards_editions (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     year         INTEGER NOT NULL,
-    ceremony_no  INTEGER,
-    held_on      TEXT,
     UNIQUE(year)
 );
 
