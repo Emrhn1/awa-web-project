@@ -8,7 +8,7 @@ function export_data(string $format): void {
         return;
     }
     if ($format === 'json') {
-        json_response($rows);
+        _send_json($rows);
         return;
     }
     if ($format === 'svg') {
@@ -87,6 +87,13 @@ function _send_csv(array $rows): void {
         fputcsv($out, array_map(fn($key) => $row[$key] ?? '', $headers), ',', '"', '\\');
     }
     fclose($out);
+}
+
+function _send_json(array $rows): void {
+    header('Content-Type: application/json; charset=utf-8');
+    header('Content-Disposition: attachment; filename="awa-nominations.json"');
+    header('Access-Control-Allow-Origin: *');
+    echo json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 }
 
 function _send_svg(array $rows): void {
