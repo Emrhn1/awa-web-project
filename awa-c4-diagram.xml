@@ -10,7 +10,7 @@
         <mxCell id="p1_user" parent="1" style="shape=mxgraph.c4.person2;fillColor=#08427B;fontColor=#ffffff;strokeColor=#073B6F;whiteSpace=wrap;html=1;" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;&lt;small&gt;Views SAG Awards nominations, applies filters, manages entries via the web dashboard.&lt;/small&gt;" vertex="1">
           <mxGeometry height="160" width="170" x="495" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="p1_awa" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;AwA System&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Visualizes SAG Awards nominations. Provides CRUD, filtering, charts, CSV/JSON/SVG/WebP export, TMDb enrichment, and news aggregation.&lt;/small&gt;" vertex="1">
+        <mxCell id="p1_awa" parent="1" style="rounded=1;fillColor=#1168BD;fontColor=#ffffff;strokeColor=#0E52A0;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;AwA System&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Visualizes SAG Awards nominations. Provides CRUD, filtering, charts, CSV/JSON/SVG/WebP export, CSV/JSON import, TMDb enrichment, and news aggregation.&lt;/small&gt;" vertex="1">
           <mxGeometry height="130" width="280" x="440" y="370" as="geometry" />
         </mxCell>
         <mxCell id="p1_tmdb" parent="1" style="rounded=1;fillColor=#999999;fontColor=#ffffff;strokeColor=#828282;whiteSpace=wrap;html=1;arcSize=5;" value="&lt;b&gt;TMDb API&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;&lt;small&gt;Provides actor biographies, profile photos, and movie details via REST API. Key kept server-side.&lt;/small&gt;" vertex="1">
