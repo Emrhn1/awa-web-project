@@ -3,14 +3,16 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS awards_editions (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
-    year         INTEGER NOT NULL UNIQUE,
+    year         INTEGER NOT NULL,
     ceremony_no  INTEGER,
-    held_on      TEXT
+    held_on      TEXT,
+    UNIQUE(year)
 );
 
 CREATE TABLE IF NOT EXISTS categories (
     id    INTEGER PRIMARY KEY AUTOINCREMENT,
-    name  TEXT NOT NULL UNIQUE
+    name  TEXT NOT NULL,
+    UNIQUE(name)
 );
 
 CREATE TABLE IF NOT EXISTS actors (
@@ -40,10 +42,11 @@ CREATE TABLE IF NOT EXISTS nominations (
 
 CREATE TABLE IF NOT EXISTS news_sources (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    name          TEXT NOT NULL UNIQUE,
+    name          TEXT NOT NULL,
     url_template  TEXT NOT NULL,
     is_enabled    INTEGER NOT NULL DEFAULT 1 CHECK (is_enabled IN (0, 1)),
-    created_at    TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at    TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(name)
 );
 
 CREATE INDEX IF NOT EXISTS idx_nominations_edition  ON nominations(edition_id);
