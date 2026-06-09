@@ -135,7 +135,6 @@ function _import_row(array $row, int $lineNum) {
     return true;
 }
 
-// Auto-creates category if not found (import is more permissive than the CRUD endpoint).
 function _import_category_id(string $name): int {
     $pdo  = db();
     $stmt = $pdo->prepare('SELECT id FROM categories WHERE name = ?');

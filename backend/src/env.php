@@ -1,4 +1,5 @@
 <?php
+
 function env(string $key, ?string $default = null): ?string {
     static $loaded = false;
     static $vars = [];

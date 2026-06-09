@@ -1,9 +1,6 @@
--- AwA (Actor Awards Visualizer)
--- SQLite schema for SAG Awards nomination data.
 
 PRAGMA foreign_keys = ON;
 
--- SAG ceremony per year (e.g. 27th SAG Awards = 2021).
 CREATE TABLE IF NOT EXISTS awards_editions (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     year         INTEGER NOT NULL UNIQUE,
@@ -11,13 +8,11 @@ CREATE TABLE IF NOT EXISTS awards_editions (
     held_on      TEXT
 );
 
--- Award category (Best Actor, Best Supporting Actress, etc.).
 CREATE TABLE IF NOT EXISTS categories (
     id    INTEGER PRIMARY KEY AUTOINCREMENT,
     name  TEXT NOT NULL UNIQUE
 );
 
--- Actor. tmdb_id is filled in Phase 2 when TMDb enrichment runs.
 CREATE TABLE IF NOT EXISTS actors (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     name            TEXT NOT NULL,
@@ -26,7 +21,6 @@ CREATE TABLE IF NOT EXISTS actors (
     UNIQUE (name)
 );
 
--- Film / production.
 CREATE TABLE IF NOT EXISTS films (
     id        INTEGER PRIMARY KEY AUTOINCREMENT,
     title     TEXT NOT NULL,
@@ -35,8 +29,6 @@ CREATE TABLE IF NOT EXISTS films (
     UNIQUE (title, year)
 );
 
--- A single nomination ties an edition + category + actor + film,
--- and records whether they won.
 CREATE TABLE IF NOT EXISTS nominations (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
     edition_id    INTEGER NOT NULL REFERENCES awards_editions(id) ON DELETE CASCADE,
@@ -46,8 +38,6 @@ CREATE TABLE IF NOT EXISTS nominations (
     is_winner     INTEGER NOT NULL DEFAULT 0 CHECK (is_winner IN (0, 1))
 );
 
--- Configurable external news providers used by the Phase 4 news proxy.
--- The URL template must contain {query}; the server replaces it safely.
 CREATE TABLE IF NOT EXISTS news_sources (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
     name          TEXT NOT NULL UNIQUE,
